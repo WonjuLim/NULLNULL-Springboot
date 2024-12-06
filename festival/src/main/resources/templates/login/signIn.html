@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/css/signIn.css">
+</head>
+<body>
+    <div class="container">
+        <h1>회원가입</h1> <br>
+
+        <form id="register">
+            <legend><label class="registerLB" for="userId"><span>아이디</span></label></legend>
+            <input type="text" class="test" name="Id" id="userId" required> <br><br>
+
+            <legend><label class="registerLB" for="userPw1"><span>비밀번호</span></label></legend>
+            <input type="text" class="test" name="Pw1" id="userPw1" required> <br><br>
+
+            <legend><label class="registerLB" for="userPw2"><span>비밀번호 확인</span></label></legend>
+            <input type="text" class="test" name="Pw2" id="userPw2" required> <br><br>
+
+            <legend><label class="registerLB" for="uesrName"><span>이름</span></label></legend>
+            <input type="text" class="test" name="Name" id="userName" required> <br><br>
+
+            <legend><label class="registerLB" for="userGender"><span>성별</span></label></legend>
+            <label><input type="radio" name="Gender" id="userGender" value="man"><span>남성</span></label>
+            <label><input type="radio" name="Gender" id="userGender" value="woman"><span>여성</span></label> <br><br>
+
+            <legend><label for="email">이메일</label></legend>
+            <input type="text" class="email" id="email" required> @
+                <select>
+                    <option>이메일 주소</option>
+                    <option>naver.com</option>
+                    <option>daum.net</option>
+                    <option>gmail.com</option>
+                </select> <br><br>
+    
+            <ul>
+                <button type="submit" class="btn">가입하기</button>
+            </ul>
+        </form>
+    </div>
+</body>
+</html>

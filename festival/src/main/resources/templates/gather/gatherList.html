@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../static/css/gather.css">
+</head>
+<body>
+    <div class="wrap"> 
+        <!-- 검색창 -->
+        <form class="filterWrap" method="post">
+            <div class="filterMain">
+                <h2 class="filterTitle">동행 찾기</h2>
+                <div class="TitleBackground"></div>
+            </div> <!-- filterMain -->
+            <!-- 검색 필터 -->
+            <div class="filter">
+                <!-- 검색 조건 -->
+                <div class="filterG1">
+                    <p><span></span> <input type="text" placeholder="축 제 제 목" name="ft_name"></p>
+                    <p><span></span> <input type="date" placeholder="날짜" name="gt_mtname"></p>
+                </div>
+                <div class="filterG2">
+                    <p>선 호 성 별</p>
+                    <div>
+                        <label class="checkbox_label">
+                            <input type="checkbox" name="prefer_gender" value="남자">
+                            <span class="checkbox_icon"></span>
+                            <span class="checkbox_name">남자</span>
+                        </label>
+                        <label class="checkbox_label">
+                            <input type="checkbox" name="prefer_gender" value="여자">
+                            <span class="checkbox_icon"></span>
+                            <span class="checkbox_name">여자</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="filterG2">
+                    <p>선 호 연 령</p>
+                    <div>
+                        <label class="checkbox_label">
+                            <input type="checkbox" name="prefer_age" value="10대">
+                            <span class="checkbox_icon"></span>
+                            <span class="checkbox_name">10대</span>
+                        </label>
+                        <label class="checkbox_label">
+                            <input type="checkbox" name="prefer_age" value="20대">
+                            <span class="checkbox_icon"></span>
+                            <span class="checkbox_name">20대</span>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="checkbox_label">
+                            <input type="checkbox" name="prefer_age" value="30대">
+                            <span class="checkbox_icon"></span>
+                            <span class="checkbox_name">30대</span>
+                        </label>
+                        <label class="checkbox_label">
+                            <input type="checkbox" name="prefer_age" value="40대">
+                            <span class="checkbox_icon"></span>
+                            <span class="checkbox_name">40대</span>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="checkbox_label">
+                            <input type="checkbox" name="prefer_age" value="50대">
+                            <span class="checkbox_icon"></span>
+                            <span class="checkbox_name">50대</span>
+                        </label>
+                        <label class="checkbox_label">
+                            <input type="checkbox" name="prefer_age" value="60대 이상">
+                            <span class="checkbox_icon"></span>
+                            <span class="checkbox_name">60대 이상</span>
+                        </label>
+                    </div>
+                </div>
+                <!-- 버튼 -->
+                <div>
+                    <p class="resetBtn"><input type="button" value="초기화"></p>
+                    <p class="searchBtn"><input type="submit" value="검색"></p>
+                </div> 
+            </div>
+        </form>
+    
+        <!-- 동행 리스트 -->
+        <div class="gatherBody">
+            <div class="filterMain">
+                <h2 class="filterTitle">검색 결과</h2>
+                <div class="TitleBackground"></div>
+                <p>총 <span>00</span>개 검색됨</p>
+            </div> <!-- filterMain -->
+            <ul class="gatherList">
+                <li>
+                    <div class="gatherMain">
+                        <h1>Title</h1>
+                        <p>
+                            <img src="../../static/img/listbackground.png">
+                            <span>fastivalName</span>
+                            <span>0000-00-00(월)</span>
+                            <span>0명 / 0명</span>
+                        </p>
+                    </div><!--gatherMain-->
+                    <div class="gatherDetail">
+                        <p>
+                            <span>작성자 | 0000-00-00</span>
+                            <span>조회수 | 00</span>
+                        </p>
+                    </div><!--gatherDetail-->
+                </li>
+                <li>
+                    <div class="gatherMain">
+                        <h1>Title</h1>
+                        <p>
+                            <img src="../../static/img/listbackground.png">
+                            <span>fastivalName</span>
+                            <span>0000-00-00(월)</span>
+                            <span>0명 / 0명</span>
+                        </p>
+                    </div><!--gatherMain-->
+                    <div class="gatherDetail">
+                        <p>
+                            <span>작성자 | 0000-00-00</span>
+                            <span>조회수 | 00</span>
+                        </p>
+                    </div><!--gatherDetail-->
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <div class="gatherMain">
+                        <h1>Title</h1>
+                        <p>
+                            <img src="../../static/img/listbackground.png">
+                            <span>fastivalName</span>
+                            <span>0000-00-00(월)</span>
+                            <span>0명 / 0명</span>
+                        </p>
+                    </div><!--gatherMain-->
+                    <div class="gatherDetail">
+                        <p>
+                            <span>작성자 | 0000-00-00</span>
+                            <span>조회수 | 00</span>
+                        </p>
+                    </div><!--gatherDetail-->
+                </li>
+                <li>
+                    <div class="gatherMain">
+                        <h1>Title</h1>
+                        <p>
+                            <img src="../../static/img/listbackground.png">
+                            <span>fastivalName</span>
+                            <span>0000-00-00(월)</span>
+                            <span>0명 / 0명</span>
+                        </p>
+                    </div><!--gatherMain-->
+                    <div class="gatherDetail">
+                        <p>
+                            <span>작성자 | 0000-00-00</span>
+                            <span>조회수 | 00</span>
+                        </p>
+                    </div><!--gatherDetail-->
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <div class="gatherMain">
+                        <h1>Title</h1>
+                        <p>
+                            <img src="../../static/img/listbackground.png">
+                            <span>fastivalName</span>
+                            <span>0000-00-00(월)</span>
+                            <span>0명 / 0명</span>
+                        </p>
+                    </div><!--gatherMain-->
+                    <div class="gatherDetail">
+                        <p>
+                            <span>작성자 | 0000-00-00</span>
+                            <span>조회수 | 00</span>
+                        </p>
+                    </div><!--gatherDetail-->
+                </li>
+                <li>
+                    <div class="gatherMain">
+                        <h1>Title</h1>
+                        <p>
+                            <img src="../../static/img/listbackground.png">
+                            <span>fastivalName</span>
+                            <span>0000-00-00(월)</span>
+                            <span>0명 / 0명</span>
+                        </p>
+                    </div><!--gatherMain-->
+                    <div class="gatherDetail">
+                        <p>
+                            <span>작성자 | 0000-00-00</span>
+                            <span>조회수 | 00</span>
+                        </p>
+                    </div><!--gatherDetail-->
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+    
+</body>
+</html>
