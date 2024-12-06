@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.teamproject.festival.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.teamproject.festival.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.teamproject.festival.test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.teamproject.festival.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/festival.iml" filepath="$PROJECT_DIR$/.idea/modules/festival.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/festival.main.iml" filepath="$PROJECT_DIR$/.idea/modules/festival.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/festival.test.iml" filepath="$PROJECT_DIR$/.idea/modules/festival.test.iml" />
     </modules>
