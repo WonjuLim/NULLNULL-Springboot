@@ -1,13 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../../static/css/index.css">
-</head>
-<body>
-    <div class="footer">
+<html xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/css/layout.css}" rel="stylesheet">
+    <div class="footer" th:fragment="footer">
         <div class="footer1">
             <ul class="footer1-1">
                 <li><a href="">Text1</a></li>
@@ -27,5 +21,4 @@
             </div>
         </div>
     </div>
-</body>
 </html>

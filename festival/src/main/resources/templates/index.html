@@ -1,41 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>울산축제알아보기</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/index.css">
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<div layout:fragment="content">
     <div class="warp">
-        <div class="header">
-            <div class="headerIn">
-                <h1 class="logo">
-                    <a href="">울산축제알아보기<img src="" alt=""></a>
-                </h1> <!-- logo -->
-                <div class="topMenu">
-                    <ul>
-                        <li><a href="">홈</a></li>
-                        <li><a href="">축제 소식</a></li>
-                        <li><a href="">울산축제찾기</a></li>
-                        <li><a href="">축제달력</a></li>
-                        <li><a href="">같이가요축제</a></li>
-                    </ul>
-                </div> <!-- topMenu -->
-                <div class="member">
-                    <ul>
-                        <li><a href="">로그인</a></li>
-                        <li><a href="">회원가입</a></li>
-                        <li><a href=""><p>검색</p></a></li>
-                    </ul>
-                </div><!-- member -->
-            </div><!-- headerIn -->
-        </div> <!-- header -->
-        
-
         <div class="container">
 
             <div class="main1">
@@ -180,27 +148,6 @@
                 </div>
             </div><!-- mainBn -->
         </div>
-
-        <div class="footer">
-            <div class="footer1">
-                <ul class="footer1-1">
-                    <li><a href="">Text1</a></li>
-                    <li><a href="">Text2</a></li>
-                    <li><a href="">Text3</a></li>
-                    <li><a href="">Text4</a></li>
-                    <li><a href="">Text5</a></li>
-                </ul>
-                <div class="footer1-2">
-                    Lorem Ipsum is simply dummy text of the printing and<br>
-                    typesetting industry. Lorem Ipsum has been the industry's standard dummy <br>
-                    text ever since the 1500s, when an unknown printer took a<br> 
-                    galley of type and scrambled it to make a <br>
-                    type specimen book.<br> 
-                    It has survived not only five centuries, but also the leap <br>
-                    into electronic typesetting, remaining 
-                </div>
-            </div>
-        </div>
     </div>
-</body>
+</div>
 </html>

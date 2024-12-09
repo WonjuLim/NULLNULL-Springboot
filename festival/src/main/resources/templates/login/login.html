@@ -1,17 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../static/css/login.css">
-</head>
-<body>
-    <form class="login_wrap" action="" method="post">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<th:block layout:fragment="css">
+    <style>
+        @charset "utf-8";
+
+        *{margin: 0;padding: 0;}
+        body {
+            font-family: "Noto Sans KR", sans-serif;
+            font-size: 13px;
+            line-height: 20px;
+            color: rgb(20, 20, 20);
+            background-image:url('../img/background_img.png');
+            background-size: cover;
+          }
+        ul, ol{list-style: none;}
+        img{vertical-align: top; border: 0;}
+        a{text-decoration: none; color: rgb(20, 20, 20);}
+
+        .login_wrap{
+            position: relative;
+            width: 500px;
+            height: 350px;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 100px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+
+        .login_wrap .login_page{
+            position: absolute;
+            top: 42px;
+            left: 134.5px;
+        }
+
+        .login_wrap input{
+            border: 0;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            padding: 15px;
+            width: 200px;
+            font-size: 14px;
+            border-radius: 10px;
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        .loginBtn{
+            font-size: 14px;
+            border: 0;
+            margin-bottom: 20px;
+            padding: 10px 30px;
+            border-radius: 10px;
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+            background-color: white;
+        }
+
+        .loginBtn:hover{
+            background-color: rgb(245, 194, 255);
+            transition: 0.6s;
+            color: rgb(142,32,149);
+        }
+        .clickBtn{
+            font-style: italic;
+            color: rgb(142,32,149);
+        }
+    </style>
+</th:block>
+
+<div layout:fragment="content">
+    <form class="login_wrap" action="/users/login" method="post">
         <div class="login_page">
+            <h2> 로그인 </h2> <br>
             <input class="login id" type="text" name="id" placeholder="아이디"> <br>
             <input class="login pw" type="text" name="password" placeholder="비밀번호"> <br>
             <button class="loginBtn" type="submit">로그인</button>
@@ -20,5 +83,5 @@
             </div>
         </div>
     </form>
-</body>
+</div>
 </html>
