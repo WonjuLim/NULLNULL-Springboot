@@ -3,11 +3,10 @@ package com.teamproject.festival.festival.controller;
 import com.teamproject.festival.festival.dto.FestivalDetailDto;
 import com.teamproject.festival.festival.dto.FestivalListDto;
 import com.teamproject.festival.festival.dto.FestivalMainDto;
-import com.teamproject.festival.festival.service.FestivalDetailService;
-import com.teamproject.festival.festival.service.FestivalReviewService;
 import com.teamproject.festival.festival.service.FestivalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -29,7 +28,7 @@ public class FestivalController {
     @GetMapping("/festival")
     public String festivalList(Model model){
 
-        List<FestivalListDto> festival = festivalListService.festivalList();
+        List<FestivalListDto> festival = festivalService.festivalList();
 
         model.addAttribute("festival", festival);
 
@@ -37,14 +36,11 @@ public class FestivalController {
         return "festival/festivalList";
     }
 
-    @Autowired
-    private FestivalDetailService festivalDetailService;
-
     //페스티벌 디테일
     @GetMapping("/detail/{ftId}")
     public String festivalDtl(Model model, @PathVariable("ftId")Long ftId){
 
-        FestivalDetailDto festivalDetailDto = festivalDetailService.getFestivalDetail(ftId);
+        FestivalDetailDto festivalDetailDto = festivalService.getFestivalDetail(ftId);
 
         model.addAttribute("festivalDetail", festivalDetailDto);
 
@@ -52,17 +48,13 @@ public class FestivalController {
         return "festival/festivalDetail";
     }
 
-    //페스티벌 리뷰
-    @Autowired
-    private FestivalReviewService festivalReviewService;
-
-    @GetMapping("/detail")
-    public String festivalRv(){
-
-        festivalReviewService.festivalReview(festivalReviewDto);
-
-        //model.addAttribute("festivalReview",);
-
-        return "festival/festivalDetail";
-    }
+//    @GetMapping("/detail")
+//    public String festivalRv(){
+//
+//        festivalReviewService.festivalReview(festivalReviewDto);
+//
+//        //model.addAttribute("festivalReview",);
+//
+//        return "festival/festivalDetail";
+//    }
 }
