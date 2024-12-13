@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<th:block layout:fragment="css">
+    <style>
+        @charset "utf-8";
+
+        *{margin: 0;padding: 0;}
+        body{
+            font-family: "Noto Sans KR", sans-serif;
+            font-size: 13px;
+            line-height: 20px;
+            color: rgb(20, 20, 20);
+            background-image:url('../img/background_img.png');
+            background-size: cover;
+            table-layout: fixed;
+        }
+        ul, ol{list-style: none;}
+        img{vertical-align: top; border: 0;}
+        a{text-decoration: none; color: rgb(20, 20, 20);}
+
+        .wrap{
+            width: 1000px;
+            min-height: 1200px;
+            margin: 0 auto;
+        }
+
+        .notDet{
+            width: 1000px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        .notDetTable{
+            table-layout: fixed;
+            text-align: center;
+            padding: 10px;
+            width: 900px;
+            margin: 0 auto;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border: 0;
+            background-color: rgb(255, 255, 255,0.8);
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        .notDetTitle{
+            text-align: left;
+            width: 70%;
+            font-size: 12px;
+        }
+
+        .notDetTitle2{
+            text-align: left;
+            margin: 10px 15px;
+            position: relative;
+            font-size: 25px;
+            line-height: 25px;
+            padding: 10px;
+            border: 0.1px solid rgb(226, 226, 226);
+            border-radius: 10px;
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+
+        .notDetcontain{
+            margin: 0 auto;
+            width: 900px;
+            min-height: 600px;
+            border: 0.1px solid rgb(226, 226, 226);
+            background-color: rgb(255, 255, 255,0.8);
+            border-radius: 10px;
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        .notDetcontain p{
+            margin: 15px;
+        }
+
+    </style>
+</th:block>
+
+<body>
+<div class="wrap">
+    <div class="notDet" layout:fragment="content">
+        <table class="notDetTable">
+            <thead>
+            <td class="notDetTitle"> 공지 > </td>
+            <td>등록자</td>
+            <td>작성일자</td>
+            <td>조회수</td>
+            </thead>
+            <tr th:each="notice: ${notice}">
+                <td class="notDetTitle2" th:text="${notice.noTitle}">제목</td>
+                <td th:text="${notice.regId}">등록자</td>
+                <td th:text="${notice.noRgDate}">0000-00-00</td>
+                <td th:text="${notice.noCount}">00</td>
+            </tr>
+        </table>
+
+        <div class="notDetcontain" th:each="notice: ${notice}">
+            <p th:text="${notice.noText}">내용</p>
+        </div>
+
+    </div>
+</div>
+</body>

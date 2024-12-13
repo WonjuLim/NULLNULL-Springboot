@@ -10,5 +10,18 @@
 
     <typeAliases>
         <typeAlias alias="userDto" type="com.teamproject.festival.user.dto.UserDto" />
+
+        <typeAlias alias="festivalMainDto" type="com.teamproject.festival.festival.dto.FestivalMainDto"></typeAlias>
+        <typeAlias alias="festivalListDto" type="com.teamproject.festival.dto.FestivalListDto" />
+        <typeAlias alias="festivalDetailDto" type="com.teamproject.festival.dto.FestivalDetailDto" />
+        <typeAlias alias="festivalReviewDto" type="com.teamproject.festival.dto.FestivalReviewDto" />
+
+        <typeAlias alias="noticeDto" type="com.teamproject.festival.notice.dto.NoticeDto" />
+        <typeAlias alias="noticeMainDto" type="com.teamproject.festival.notice.dto.NoticeMainDto"></typeAlias>
+        <typeAlias alias="noticeInsertDto" type="com.teamproject.festival.notice.form.NoticeForm" />
+
+        <typeAlias alias="gatherDto" type="com.teamproject.festival.gather.dto.GatherDto" />
+        <typeAlias alias="gatherImgDto" type="com.teamproject.festival.gather.dto.GatherImgDto" />
+        <typeAlias alias="gatherSearchDto" type="com.teamproject.festival.gather.dto.GatherSearchDto" />
     </typeAliases>
 </configuration>

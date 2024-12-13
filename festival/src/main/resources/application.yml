@@ -16,9 +16,6 @@ spring:
       maxFileSize: 20MB       # 파일 한개당 최대 크기
       maxRequestSize: 100MB   # 요청당 최대 파일 크기
 
-itemImgLocation: c:/shop/item
-uploadPath: file:///C:/shop/
-
 mybatis:
   mapper-locations: classpath:mapper/*.xml
   config-location: classpath:mybatis-config.xml

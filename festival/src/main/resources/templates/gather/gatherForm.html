@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<div layout:fragment="content">
+
+    <script>
+        function resetForm() {
+            document.querySelector('form').reset();
+        }
+    </script>
+
+    <div class="wrap"> 
+        <!-- 검색창 -->
+        <form class="filterWrap" method="post">
+            <div class="filterMain">
+                <h2 class="filterTitle">동행 찾기</h2>
+                <div class="TitleBackground"></div>
+            </div> <!-- filterMain -->
+            <!-- 검색 필터 -->
+            <div class="filter">
+                <!-- 검색 조건 -->
+                <div class="filterG1" th:object="${gatherSearchDto}">
+                    <!-- 수정 요망 -->
+                    <p><span></span> <input type="text" placeholder="축 제 제 목" name="ft_name"></p>
+                    <p><span></span> <input type="date" placeholder="날짜" name="gt_mtDate"></p>
+                </div>
+                <div class="filterG2">
+                    <p>선 호 성 별</p>
+                    <div>
+                        <label class="checkbox_label">
+                            <input type="checkbox" name="prefer_gender" value="남자" th:checked="${preferGender == '남자'}">
+                            <span class="checkbox_icon"></span>
+                            <span class="checkbox_name">남자</span>
+                        </label>
+                        <label class="checkbox_label">
+                            <input type="checkbox" name="prefer_gender" value="여자" th:checked="${preferGender == '여자'}">
+                            <span class="checkbox_icon"></span>
+                            <span class="checkbox_name">여자</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="filterG2">
+                    <p>선 호 연 령</p>
+                    <div>
+                        <label class="checkbox_label">
+                            <input type="checkbox" name="prefer_age" value="10대" th:checked="${preferAge == '10대'}">
+                            <span class="checkbox_icon"></span>
+                            <span class="checkbox_name">10대</span>
+                        </label>
+                        <label class="checkbox_label">
+                            <input type="checkbox" name="prefer_age" value="20대" th:checked="${preferAge == '10대'}">
+                            <span class="checkbox_icon"></span>
+                            <span class="checkbox_name">20대</span>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="checkbox_label">
+                            <input type="checkbox" name="prefer_age" value="30대" th:checked="${preferAge == '10대'}">
+                            <span class="checkbox_icon"></span>
+                            <span class="checkbox_name">30대</span>
+                        </label>
+                        <label class="checkbox_label">
+                            <input type="checkbox" name="prefer_age" value="40대" th:checked="${preferAge == '10대'}">
+                            <span class="checkbox_icon"></span>
+                            <span class="checkbox_name">40대</span>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="checkbox_label">
+                            <input type="checkbox" name="prefer_age" value="50대" th:checked="${preferAge == '10대'}">
+                            <span class="checkbox_icon"></span>
+                            <span class="checkbox_name">50대</span>
+                        </label>
+                        <label class="checkbox_label">
+                            <input type="checkbox" name="prefer_age" value="60대 이상" th:checked="${preferAge == '10대'}">
+                            <span class="checkbox_icon"></span>
+                            <span class="checkbox_name">60대 이상</span>
+                        </label>
+                    </div>
+                </div>
+                <!-- 버튼 -->
+                <div th:object="${gatherSearchDto}">
+                    <p class="resetBtn">
+                        <input type="button" value="초기화" onclick="resetForm()">
+                    </p>
+
+                    <p type="text" class="searchBtn">
+                        <input type="submit" th:action="@{'/gather/gatherList/gatherId'}" value="검색">
+                    </p>
+
+                </div>
+            </div>
+        </form>
+    
+        <!-- 동행 리스트 -->
+        <div class="gatherBody" th:action="@{'/gather/gatherList/'}" th:object="${gatherList}" role="form" method="get">
+            <div class="filterMain">
+                <h2 class="filterTitle">검색 결과</h2>
+                <div class="TitleBackground"></div>
+                <p>총 <span></span>개 검색됨</p>
+            </div> <!-- filterMain -->
+            <ul class="gatherList">
+                <li>
+                <div class="gatherMain" th:each="gather:${gatherList[0]}">
+                    <a th:href="'/gather/' + ${gather.gatherId}">
+                        <h1 th:text="${gather.gatherId}">Title</h1>
+                        <p>
+                            <img src="../../static/img/listbackground.png">
+                            <span th:text="${gather.gtTitle}"></span>
+                            <span th:text="${gather.gtRgDate}"></span>
+                            <span th:text="${gather.userId}"></span>
+                            <span th:text="${gather.gtCount}"></span>
+                        </p>
+                    </a>
+                </div>  <!--gatherMain-->
+
+                </li>
+                <li>
+                    <div class="gatherMain"  th:each="gather:${gatherList[1]}">
+                        <h1 th:text="${gather.gatherId}">Title</h1>
+                        <p>
+                            <img src="../../static/img/listbackground.png">
+                            <span th:text="${gather.gtTitle}"></span>
+                            <span th:text="${gather.gtRgDate}"></span>
+                            <span th:text="${gather.userId}"></span>
+                            <span th:text="${gather.gtCount}"></span>
+                        </p>
+                    </div>  <!--gatherMain-->
+                </li>
+            </ul>
+            <ul class="gatherList">
+                <li>
+                    <div class="gatherMain" th:each="gather:${gatherList[2]}">
+                        <h1 th:text="${gather.gatherId}">Title</h1>
+                        <p>
+                            <img src="../../static/img/listbackground.png">
+                            <span th:text="${gather.gtTitle}"></span>
+                            <span th:text="${gather.gtRgDate}"></span>
+                            <span th:text="${gather.userId}"></span>
+                            <span th:text="${gather.gtCount}"></span>
+                        </p>
+                        </a>
+                    </div>  <!--gatherMain-->
+                </li>
+                <li>
+                    <div class="gatherMain" th:each="gather:${gatherList[3]}">
+                        <h1 th:text="${gather.gatherId}">Title</h1>
+                        <p>
+                            <img src="../../static/img/listbackground.png">
+                            <span th:text="${gather.gtTitle}"></span>
+                            <span th:text="${gather.gtRgDate}"></span>
+                            <span th:text="${gather.userId}"></span>
+                            <span th:text="${gather.gtCount}"></span>
+                        </p>
+                    </div>  <!--gatherMain-->
+                </li>
+            </ul>
+            <ul class="gatherList">
+                <li>
+                    <div class="gatherMain" th:each="gather:${gatherList[4]}">
+                        <h1 th:text="${gather.gatherId}">Title</h1>
+                        <p>
+                            <img src="../../static/img/listbackground.png">
+                            <span th:text="${gather.gtTitle}"></span>
+                            <span th:text="${gather.gtRgDate}"></span>
+                            <span th:text="${gather.userId}"></span>
+                            <span th:text="${gather.gtCount}"></span>
+                        </p>
+                    </div>  <!--gatherMain-->
+                </li>
+                <li>
+                    <div class="gatherMain" th:each="gather:${gatherList[5]}">
+                        <h1 th:text="${gather.gatherId}">Title</h1>
+                        <p>
+                            <img src="../../static/img/listbackground.png">
+                            <span th:text="${gather.gtTitle}"></span>
+                            <span th:text="${gather.gtRgDate}"></span>
+                            <span th:text="${gather.userId}"></span>
+                            <span th:text="${gather.gtCount}"></span>
+                        </p>
+                    </div>  <!--gatherMain-->
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+</div>
+</html>

@@ -1,0 +1,146 @@
+package com.teamproject.festival.notice.controller;
+
+import com.teamproject.festival.config.PageHandler;
+import com.teamproject.festival.notice.dto.NoticeDto;
+import com.teamproject.festival.notice.form.NoticeForm;
+import com.teamproject.festival.notice.service.NoticeService;
+import com.teamproject.festival.user.mapper.UserMapper;
+import com.teamproject.festival.user.service.UserService;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@Controller
+@RequiredArgsConstructor
+public class NoticeController {
+
+    @Autowired
+    private final NoticeService noticeService;
+
+    @Autowired
+    private final UserService userService;
+
+    // 공지사항 리스트 출력
+    @GetMapping(value = {"/notices", "/notices/{page}"})
+    public String noticeList(@PathVariable(value = "page", required = false) Integer page,
+                             Model model, Principal principal) {
+        int ps = 10; // 페이지 크기
+
+        // 현재 페이지 계산
+        if (page == null) page = 1;
+
+        // 조회에 필요한 파라미터 설정
+        Map<String, Object> map = new HashMap<>();
+        map.put("page", page * ps - ps);
+        map.put("pageSize", ps);
+
+        // 총 공지사항 개수 조회
+        int totalCnt = noticeService.countNotice(map);
+        PageHandler pageHandler = new PageHandler(totalCnt, ps, page);
+
+        // 공지사항 리스트 조회
+        List<NoticeDto> notices = noticeService.noticeListAll(map);
+
+        // 로그인 사용자 아이디 가져오기
+        String regId = (principal != null) ? principal.getName() : null;
+
+        // 모델에 데이터 추가
+        model.addAttribute("notices", notices);
+        model.addAttribute("pageHandler", pageHandler);
+        model.addAttribute("regId", regId);
+
+        return "notice/noticeList";
+    }
+
+    // 공지사항 상세 보기
+    @GetMapping("/notice/{noId}")
+    public String noticeDetail(@PathVariable("noId") String noId,
+                               HttpServletRequest request,
+                               Model model) {
+        // 세션을 사용해 조회수 증가 처리
+        HttpSession session = request.getSession();
+        @SuppressWarnings("unchecked")
+        List<String> viewedNotices = (List<String>) session.getAttribute("viewedNotices");
+
+        if (viewedNotices == null) {
+            viewedNotices = new ArrayList<>();
+        }
+
+        if (!viewedNotices.contains(noId)) {
+            noticeService.updateCount(noId);
+            viewedNotices.add(noId);
+            session.setAttribute("viewedNotices", viewedNotices);
+        }
+
+        // 공지사항 상세 조회
+        NoticeDto noticeDto = noticeService.noticeDetail(noId);
+        model.addAttribute("notice", noticeDto);
+
+        return "notice/noticeDetail";
+    }
+
+    // 공지사항 작성 폼
+    @GetMapping("/notice/write")
+    public String noticeForm(Model model, Principal principal) {
+        String userId = (principal != null) ? principal.getName() : null;
+
+        if (userId == null) {
+            return "redirect:/login"; // 로그인이 필요한 경우 처리
+        }
+
+        System.out.println("받아온 ID : " + userId);
+
+        model.addAttribute("noticeForm", new NoticeForm());
+        model.addAttribute("regId", userId);
+
+        return "/notice/noticeWrite";
+    }
+
+    // 공지사항 작성 처리
+    @PostMapping("/notice/write")
+    public String noticeWrite(@Valid NoticeForm noticeForm, BindingResult bindingResult,
+                              Model model, Principal principal) {
+
+        if (bindingResult.hasErrors()) {
+            return "/notice/write";
+        }
+
+        String id = principal.getName();
+
+        try {
+            // 로그인 사용자 ID 확인 및 설정
+            String loggedInUserId = principal.getName();
+            System.out.println("로그인 사용자 ID: " + loggedInUserId); // 디버깅
+
+            // 로그인 사용자 ID 설정
+            noticeForm.setRegId(loggedInUserId);
+
+            // 공지사항 저장
+            noticeService.noticeInsert(noticeForm, id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("errorMessage", "공지사항 등록 중 에러가 발생하였습니다.");
+            return "/notice/write";
+        }
+
+        return "redirect:/notices";
+    }
+}

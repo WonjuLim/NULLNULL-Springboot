@@ -97,7 +97,7 @@
         $(document).ready(function() {
 
             let errorMessage= /*[[${errorMessage}]]*/ "";
-            if (errorMessage != null {
+            if (errorMessage != null) {
                 alert(errorMessage);
             }
         });
@@ -108,30 +108,25 @@
         <h1>회원가입</h1> <br>
 
         <form action="/users/new" role="form" method="post" th:object="${userJoinForm}">
-            <legend><label class="registerLB" for="userId"><span>아이디</span></label></legend>
-            <input type="text" class="test" name="Id" id="userId" required> <br><br>
+            <legend><label th:for="userId"><span>아이디</span></label></legend>
+            <input type="text" th:field="*{userId}" class="test" id="userId">
+            <p th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" class="fieldError">Incorrect data</p> <br><br>
 
-            <legend><label class="registerLB" for="userPw1"><span>비밀번호</span></label></legend>
-            <input type="text" class="test" name="Pw1" id="userPw1" required> <br><br>
+            <legend><label th:for="password"><span>비밀번호</span></label></legend>
+            <input type="password" th:field="*{password}" class="test" id="userPw1">
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">Incorrect data</p> <br><br>
 
-            <legend><label class="registerLB" for="userPw2"><span>비밀번호 확인</span></label></legend>
-            <input type="text" class="test" name="Pw2" id="userPw2" required> <br><br>
+            <legend><label th:for="userName"><span>이름</span></label></legend>
+            <input type="text" th:field="*{userName}" class="test" id="userName">
+            <p th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="fieldError">Incorrect data</p> <br><br>
 
-            <legend><label class="registerLB" for="uesrName"><span>이름</span></label></legend>
-            <input type="text" class="test" name="Name" id="userName" required> <br><br>
+            <legend><label><span>성별</span></label></legend>
+            <label><input type="radio" th:field="*{userGender}" value="man"> 남성</label>
+            <label><input type="radio" th:field="*{userGender}" value="woman"> 여성</label> <br><br>
 
-            <legend><label class="registerLB" for="userGender"><span>성별</span></label></legend>
-            <label><input type="radio" name="Gender" id="userGender" value="man"><span>남성</span></label>
-            <label><input type="radio" name="Gender" id="userGender" value="woman"><span>여성</span></label> <br><br>
-
-            <legend><label for="email">이메일</label></legend>
-            <input type="text" class="email" id="email" required> @
-                <select>
-                    <option>이메일 주소</option>
-                    <option>naver.com</option>
-                    <option>daum.net</option>
-                    <option>gmail.com</option>
-                </select> <br><br>
+            <legend><label th:for="email">이메일</label></legend>
+            <input type="text" th:field="*{userEmail}" class="email" id="email">
+            <p th:if="${#fields.hasErrors('userEmail')}" th:errors="*{userEmail}" class="fieldError">Incorrect data</p>
 
             <ul>
                 <button type="submit" class="btn">가입하기</button>

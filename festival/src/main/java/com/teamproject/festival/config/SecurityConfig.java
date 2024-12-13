@@ -38,7 +38,7 @@ public class SecurityConfig {
                 .formLogin((formLogin) -> formLogin
                         .loginPage("/users/login") // 로그인 페이지 url
                         .defaultSuccessUrl("/", true) //로그인 성공시 이동할 url
-                        .usernameParameter("id") // 로그인할 때 사용할 파라미터의 이름으로 id로 지정
+                        .usernameParameter("userId") // 로그인할 때 사용할 파라미터의 이름으로 id로 지정
                         .failureUrl("/users/login/error") ) // 로그인 실패시 이동할 url
                 // 로그아웃 경로 등록
                 .logout((logout) -> logout  // 로그인과 관련된 옵션 설정을 종료하고 logout을 설정

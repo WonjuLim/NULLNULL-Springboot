@@ -1,12 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../../static/css/gather.css">
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+<div layout:fragment="content">
     <div class="wrap">
         <div class="detail">
             <div class="detailImg">
@@ -15,7 +11,7 @@
 
             <div class="detailMain">
                 <div class="detailHead">
-                    <div class="detailtitle">
+                    <div class="detailTitle">
                         <p>제목</p>
                     </div>
                     <div class="detailRgDate">
@@ -51,5 +47,5 @@
             </div>
         </div>
     </div>
-</body>
+</div>
 </html>

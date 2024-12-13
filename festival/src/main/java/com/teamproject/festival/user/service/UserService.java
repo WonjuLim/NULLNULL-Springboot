@@ -16,7 +16,7 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
+    // 회원가입
     public int insertUser(UserDto userDto){
 
         this.overlapId(userDto.getUserId());
@@ -24,15 +24,16 @@ public class UserService {
 
         // 비밀번호 암호화
 //        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode(userDto.getUserPw());
+        String encodedPassword = passwordEncoder.encode(userDto.getPassword());
 
-        userDto.setUserPw(encodedPassword);
+        userDto.setPassword(encodedPassword);
 
         return userMapper.insertUser(userDto);
     }
 
-    public void overlapId(String id){
-        UserDto findId = userMapper.overlapId(id);
+    // id 중복 체크
+    public void overlapId(String userId){
+        UserDto findId = userMapper.overlapId(userId);
 
         if(findId != null){
             // IllegalStateException : 대상 객체의 상태가 호출된 메서드를 수행하기에
@@ -41,6 +42,7 @@ public class UserService {
         }
     }
 
+    // 이메일 중복 체크
     public void overlapEmail(String email){
         UserDto findEmail = userMapper.overlapEmail(email);
 
@@ -50,8 +52,27 @@ public class UserService {
 
     }
 
-    public Long findUserId(String id){
-        return userMapper.findUserId(id);
+    // 로그인
+    public UserDto login(String userId, String password) {
+        // 데이터베이스에서 사용자 정보 조회
+        UserDto user = userMapper.loginUser(userId);
+        System.out.println(user);
+        if (user == null) {
+            throw new IllegalArgumentException("존재하지 않는 사용자입니다.");
+        }
+
+
+         // 비밀번호 검증
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
+        }
+
+        // 로그인 성공 시 사용자 정보 반환
+        return user;
+    }
+
+    public String findUserId(String userId){
+        return userMapper.findUserId(userId);
     }
 
 

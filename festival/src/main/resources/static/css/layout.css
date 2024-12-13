@@ -43,33 +43,49 @@ a{text-decoration: none; color: rgb(20, 20, 20);}
 
 .main1{
     position: relative;
+    margin: 0 auto;
     height: 480px;
+    width: 1200px;
     overflow: hidden;
     margin-bottom: 50px;
     background-color: rgb(241, 232, 255);
 }
 
 .main1 .l_move{
+    z-index: 1;
     position: absolute;
     top : 50%;
     left: 50%;
     margin-left: -600px;
     margin-top: -26px;
+    cursor: pointer;
 }
 .main1 .r_move{
+    z-index: 1;
     position: absolute;
     top : 50%;
     right: 50%;
     margin-right: -600px;
     margin-top: -26px;
+    cursor: pointer;
 }
 
 .mainImg{
     position: absolute;
     top: 0;
     left: 0;
-    margin-left: -800px;
+    overflow: hidden;
 }
+
+.mainImgList{
+    display: flex;
+    transition: 0.5s;
+}
+
+.ImgBn img{
+    width: 1200px;
+}
+
 
 .main2{
     width: 1200px;
@@ -120,11 +136,23 @@ a{text-decoration: none; color: rgb(20, 20, 20);}
     margin-bottom: 50px;
 }
 
-.mainBn .mainBnT{
+.mainBns{
+    display: flex;
+}
+
+.mainBnT{
     width: 800px;
     margin-bottom: 15px;
     display: flex;
     justify-content: space-between;
+}
+
+.mainBnT2{
+    width: 385px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 15px;
 }
 
 .mainBn .mainBnT a{
@@ -140,7 +168,7 @@ a{text-decoration: none; color: rgb(20, 20, 20);}
     background-color: rgb(255, 255, 255);
     box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     border-radius: 10px;
-    font-size: 17px;
+    font-size: 13px;
     height: 460px;
     width: 800px;
 }
@@ -150,17 +178,30 @@ a{text-decoration: none; color: rgb(20, 20, 20);}
     border-bottom: gainsboro solid 2px;
 }
 
-
-.mainBn1 ul li a .mainBn1T{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
+.fstTitle{
     font-size: 19px;
+    line-height: 19px;
+    font-weight: bold;
 }
 
 .mBn1Date{
     font-size: 12px;
 }
+
+.fst1{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.mainBn1T{
+    display: flex;
+}
+
+.mBn1Date{
+    margin-left: 10px
+}
+
 
 .mainBn2{
     background-color: rgb(255, 255, 255);
@@ -170,6 +211,27 @@ a{text-decoration: none; color: rgb(20, 20, 20);}
     height: 460px;
     width: 385px;
 }
+
+.mainBn2T .mainBn2th tr{
+    background-color: aqua;
+}
+
+.mainBn2F {
+    padding: 10px;
+}
+
+.mainBn2T {
+    td {
+        padding: 10px;
+    }
+}
+
+
+
+
+
+
+
 
 .footer{
     width: 1200px;

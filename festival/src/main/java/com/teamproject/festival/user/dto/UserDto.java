@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 public class UserDto {
 
     private String userId;
-    private String userPw;
+    private String password; // 시큐리티 이용할 땐 반드시 변수명이 password여야 함.
     private String userName;
     private String userEmail;
     private String userUSEYN;

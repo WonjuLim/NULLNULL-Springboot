@@ -21,6 +21,7 @@ public class UserSecurityService implements UserDetailsService {
 
     private final UserMapper userMapper;
 
+    // 이름으로 찾음
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -38,11 +39,11 @@ public class UserSecurityService implements UserDetailsService {
             authorities.add(new SimpleGrantedAuthority(Role.USER.toString()));
         }
 
-        System.out.println(user.getUserPw());
+        System.out.println(user.getPassword());
 
         return User.builder()
                 .username(user.getUserId())
-                .password(user.getUserPw())
+                .password(user.getPassword())
                 .roles(user.getUserRole().toString())
                 .build();
     }

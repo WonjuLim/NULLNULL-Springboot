@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout}">
+
+<th:block layout:fragment="css">
+    <style>
+        @charset "utf-8";
+
+        *{margin: 0;padding: 0;}
+        body{
+            font-family: "Noto Sans KR", sans-serif;
+            font-size: 13px;
+            line-height: 20px;
+            color: rgb(20, 20, 20);
+            background-image:url('../img/background_img.png');
+            background-size: cover;
+            table-layout: fixed;
+          }
+        ul, ol{list-style: none;}
+        img{vertical-align: top; border: 0;}
+        a{text-decoration: none; color: rgb(20, 20, 20);}
+
+        .wrap{
+            width: 1000px;
+            min-height: 1200px;
+            margin: 0 auto;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgb(255, 255, 255,0.5);
+        }
+
+        .noticeMain{
+            width: 1000px;
+            margin-bottom: 20px;
+        }
+
+        .noticeMain .noticeTitle{
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
+            padding-left: 15px;
+            font-size: 25px;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);;
+        }
+
+        .noticeMain .TitleBackground{
+            line-height: 55px;
+            position: relative;
+            background-image: linear-gradient(to right, rgb(255, 255, 255),rgb(255, 255, 255), rgb(255, 255, 255,0));
+            box-shadow : 0 3px 6px rgba(0,0,0,0.05), 0 3px 6px rgba(0,0,0,0);
+            border-radius: 10px;
+            width: 1000px;
+            height: 15px;
+            top: -8px;
+            z-index: 0;
+            margin-bottom: 30px;
+        }
+
+
+        .noticetable{
+            table-layout: fixed;
+            text-align: center;
+            padding: 15px;
+            width: 900px;
+            margin: 0 auto;
+            height: 680px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+            border: 0;
+            background-color: rgb(255, 255, 255,0.8);
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+
+        .noticetable thead tr td{
+            font-size: 15px;
+            height: 40px;
+            padding: 5px 10px;
+            border: 0.1px solid rgb(226, 226, 226);
+            border-radius: 10px;
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        .noticetable thead tr .thT1{
+           width: 500px;
+        }
+
+        .noticetable thead tr .td1{
+            width: 100px;
+        }
+
+        .pageMover {
+            margin-bottom: 20px;
+        }
+
+        .pageMover ul{
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            width: 200px;
+            border: 0.1px solid rgb(226, 226, 226);
+            background-color: rgb(255, 255, 255,0.8);
+            border-radius: 10px;
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        .pageMover ul li{
+            margin: 5px;
+        }
+
+        .search{
+            display: flex;
+            justify-content: center;
+        }
+
+        select{
+            width: auto;
+            font-weight: bold;
+            text-align: center;
+            font-size: 15px;
+            padding: 10.5px 5px;
+            margin: 10px;
+            border: 0.1px solid rgb(226, 226, 226);
+            border-radius: 10px;
+            background-color: rgb(255, 255, 255);
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        input{
+            width: 270px;
+            padding: 10.5px 5px;
+            margin: 10px;
+            border: 0.1px solid rgb(226, 226, 226);
+            border-radius: 10px;
+            background-color: rgb(255, 255, 255);
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        input::placeholder {
+            font-size: 15px;
+            line-height: 20px;
+            color: rgb(161, 161, 161);
+            text-align: center;
+        }
+
+
+        .filterG2 div{
+            margin-bottom: 5px;
+        }
+
+        button[type=submit]{
+            margin: 10px;
+            width: 80px;
+            padding: 10px 0;
+            font-weight: bold;
+            text-align: center;
+            border: 0.1px solid rgb(226, 226, 226);
+            border-radius: 10px;
+            background-color: rgb(255, 255, 255);
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        button[type=submit]:hover{
+            background-color: rgb(245, 194, 255);
+            transition: 0.6s;
+            color: rgb(142,32,149);
+            border: 0.1px solid rgb(245, 194, 255);
+        }
+
+        button[type=submit]:active{
+            background-color: rgb(215, 167, 224);
+            transition: 0.3s;
+        }
+    </style>
+</th:block>
+
+<!-- 사용자 스크립트 추가 -->
+<!--<th:block layout:fragment="script">-->
+<!--    <script th:inline="javascript">-->
+
+<!--        $(document).ready(function() {-->
+<!--            $("#searchBtn").on("click", function(e) {-->
+<!--                e.preventDefault();-->
+<!--                page(1);-->
+<!--            })-->
+<!--        });-->
+
+<!--        function page(page){-->
+<!--            let searchDateType=$("#searchDateType").val();-->
+<!--            let searchSellStatus=$("#searchSellStatus").val();-->
+<!--            let searchBy=$("#searchBy").val();-->
+<!--            let searchText=$("#searchText").val();-->
+
+<!--            location.href="/admin/items/"+page+-->
+<!--                           "?searchDateType=" + searchDateType +-->
+<!--                           "&searchSellStatus=" + searchSellStatus +-->
+<!--                           "&searchBy=" + searchBy +-->
+<!--                           "&searchText=" + searchText;-->
+<!--        }-->
+<!--    </script>-->
+<!--</th:block>-->
+
+<body>
+<div class="wrap" layout:fragment="content">
+    <div class="noticeMain">
+        <div class="noticeTitle">공지사항</div>
+        <div class="TitleBackground"></div>
+        <form th:action="@{'/notices/' + ${page}}" th:object="${notices}" role="form" method="get">
+            <table class="noticetable">
+                <thead>
+                <tr>
+                    <td>no</td>
+                    <td class="thT1">제목</td>
+                    <td class="td1">등록일</td>
+                    <td class="td1">조회수</td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="notice : ${notices}">
+                    <td th:text="${notice.noId}"></td>
+                    <td class="thT2">
+                        <a th:href="'/notice/' + ${notice.noId}" th:text="${notice.noTitle}"></a>
+                    </td>
+                    <td th:text="${notice.noRgDate}"></td>
+                    <!--<td>등록자</td>-->
+                    <td th:text="${notice.noCount}"></td>
+                </tr>
+
+                </tbody>
+            </table>
+
+
+<!--            <div class="pageMover" th:with="start=${pageHandler.beginPage}, end=${pageHandler.endPage}">-->
+<!--                <ul class="pagination justify-content-center">-->
+<!--                    <li th:if="${not pageHandler.firstPage}"-->
+<!--                        th:classappend="${pageHandler.firstPage} ? 'disabled' : ''" class="page-item">-->
+<!--                        <a th:onclick="'javascript:page(' + ${pageHandler.page-1} + ')'" aria-label='Previous'-->
+<!--                           class="page-link">-->
+<!--                            <span aria-hidden='true'> 이전 </span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+
+<!--                    <li th:each="page: ${#numbers.sequence(start, end)}"-->
+<!--                        th:classappend="${pageHandler.page eq page} ? 'active' : ''"-->
+<!--                        class="page-item">-->
+<!--                        <a th:onclick="'javascript:page(' + ${page} + ')'"-->
+<!--                           th:inline="text" class="page-link">[[${page}]]</a>-->
+<!--                    </li>-->
+
+<!--                    <li th:if="${not pageHandler.lastPage}"-->
+<!--                        th:classappend="${pageHandler.lastPage} ? 'disabled' : ''"-->
+<!--                        class="page-item">-->
+<!--                        <a th:onclick="'javascript:page(' + ${pageHandler.page + 1} + ')'"-->
+<!--                           aria-label='Next' class="page-link">-->
+<!--                            <span aria-hidden='true'> 다음 </span>-->
+<!--                        </a>-->
+<!--                    </li>-->
+
+<!--                </ul>-->
+<!--            </div>-->
+
+<!--            <div class="search" th:object="${itemSearchDto}">-->
+<!--                <select th:field="*{searchDateType}" class="form-control" >-->
+<!--                    <option value="all">전체기간</option>-->
+<!--                    <option value="1d">1일</option>-->
+<!--                    <option value="1w">1주</option>-->
+<!--                    <option value="1m">1개월</option>-->
+<!--                    <option value="6m">6개월</option>-->
+<!--                </select>-->
+<!--                <select th:field="*{searchBy}" class="form-control" >-->
+<!--                    <option value="itemName">제목내용</option>-->
+<!--                    <option value="itemDetail">상세내용</option>-->
+<!--                </select>-->
+
+<!--                <input th:field="*{searchText}" type="text" class="form-control" placeholder="검색어를 입력해주세요">-->
+
+<!--                <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>-->
+<!--            </div>-->
+        </form>
+        <div>
+            <a th:href="'/notice/write'">글 작성</a>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
