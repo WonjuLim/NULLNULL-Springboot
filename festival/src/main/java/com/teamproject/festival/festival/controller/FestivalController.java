@@ -19,25 +19,35 @@ public class FestivalController {
     @Autowired
     private FestivalService festivalService;
 
-    @GetMapping("/festival")
-    public List<FestivalMainDto> festivalList(Map map) {
+    @GetMapping("/festival/festivalMainList")
+    public List<FestivalMainDto> festivalMainList(Map map) {
         return festivalService.festivalMainList(map);
     }
 
     //페스티벌 리스트
-    @GetMapping("/festival")
+    @GetMapping("/festival/festivalList")
     public String festivalList(Model model){
 
         List<FestivalListDto> festival = festivalService.festivalList();
 
         model.addAttribute("festival", festival);
 
-
         return "festival/festivalList";
     }
 
     //페스티벌 디테일
-    @GetMapping("/detail/{ftId}")
+//    @GetMapping("/festival/festivaldetail/{ftId}")
+//    public String festivalDtl(Model model, @PathVariable("ftId")Long ftId){
+//
+//        FestivalDetailDto festivalDetailDto = festivalService.getFestivalDetail(ftId);
+//
+//        model.addAttribute("festivalDetail", festivalDetailDto);
+//
+//
+//        return "festival/festivalDetail";
+//    }
+
+    @GetMapping("festival/detail/{ftId}")
     public String festivalDtl(Model model, @PathVariable("ftId")Long ftId){
 
         FestivalDetailDto festivalDetailDto = festivalService.getFestivalDetail(ftId);

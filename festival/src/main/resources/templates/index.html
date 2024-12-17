@@ -74,16 +74,6 @@
 
 
             <div class="main2">
-                <h2>새 소식 | <span>지금 울산의 소식을 알아보세요</span></h2>
-                <div class="ulsanNews">
-                    <ul>
-                        <li class="news"><a href="">ulsanNews1</a></li>
-                        <li class="news"><a href="">ulsanNews1</a></li>
-                        <li class="news"><a href="">ulsanNews1</a></li>
-                        <li class="news"><a href="">ulsanNews1</a></li>
-                        <li class="news"><a href="">ulsanNews1</a></li>
-                    </ul>
-                </div><!-- ulsanNews -->
 
                 <ul class="menuHiper">
                     <li>
@@ -123,7 +113,7 @@
                 <div class="mainBns">
                     <div class="mainBnT">
                         <h2>축제찾기</h2>
-                        <a href=""><span>더보기 ></span></a>
+                        <a th:href="'/festival/festivalList'"><span>더보기 ></span></a>
                     </div>
                     <div class="mainBnT2">
                         <h2>공지사항</h2>
@@ -135,17 +125,15 @@
                         <form th:action="@{'/festival/'}" th:object="${festival}" role="form" method="get">
                             <ul>
                                 <li th:each="festival : ${festival}">
-                                    <a href="">
-                                        <div class="fst1">
-                                                <p class="fstTitle" th:text="${festival.ftName}">title</p>
-                                            <div class="mainBn1T">
-                                                <p class="mBn1Date" th:text="${festival.ftStDate}" >개최일</p>
-                                                <p class="mBn1Date">~</p>
-                                                <p class="mBn1Date" th:text="${festival.ftEdDate}" ></p>
-                                            </div>
+                                    <div class="fst1">
+                                            <p class="fstTitle" th:text="${festival.ftName}">title</p>
+                                        <div class="mainBn1T">
+                                            <p class="mBn1Date" th:text="${festival.ftStDate}" >개최일</p>
+                                            <p class="mBn1Date">~</p>
+                                            <p class="mBn1Date" th:text="${festival.ftEdDate}" ></p>
                                         </div>
-                                        <p th:text="${festival.ftText}" class="mBn1Txt">Txt</p>
-                                    </a>
+                                    </div>
+                                    <p th:text="${festival.ftText}" class="mBn1Txt">Txt</p>
                                 </li>
                             </ul>
                         </form>
@@ -157,13 +145,13 @@
                                 <thead class="mainBn2th">
                                     <td>no</td>
                                     <td>제목</td>
-                                    <td>조회수</td>
                                     <td>등록일</td>
+                                    <td>조회수</td>
                                 </thead>
                                 <tbody>
                                     <tr th:each="notice : ${notice}">
-                                        <td th:text="${notice.noId}" style="font-size: 12px">공지사항 아이디</td>
-                                        <td th:text="${notice.noTitle}" style="font-size: 12px">제목</td>
+                                        <td th:text="${notice.noId}" style="font-size: 12px"></td>
+                                        <td> <a th:href="'/notice/' + ${notice.noId}" th:text="${notice.noTitle}" style="font-size: 12px"></a></td>
                                         <td th:text="${notice.noRgDate}" style="font-size: 12px"></td>
                                         <td th:text="${notice.noCount}" style="font-size: 12px"></td>
                                     </tr>

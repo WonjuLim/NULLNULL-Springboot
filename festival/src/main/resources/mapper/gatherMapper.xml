@@ -22,9 +22,7 @@
         FROM gather
     </select>
 
-
-
-    <!-- 축제 검색 -->
+    <!-- 축제 상세 조회 -->
     <select id="gatherSelect" resultType="gatherDto">
         SELECT gt_title, gather_id, ft_id, gt_mtDate, prefer_gender, prefer_age
         FROM gather
@@ -38,8 +36,6 @@
         WHERE ft_id = #{ft_id}
         ORDER BY ft_id
     </select>
-
-
 
     <!-- 축제 변경하기 -->
     <update id="gatherUpdate" parameterType="gatherDto">

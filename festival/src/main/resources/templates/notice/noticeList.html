@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
 
@@ -280,7 +281,7 @@
 <!--            </div>-->
         </form>
         <div>
-            <a th:href="'/notice/write'">글 작성</a>
+            <a th:href="'/notice/write'" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">글 작성</a>
         </div>
     </div>
 </div>

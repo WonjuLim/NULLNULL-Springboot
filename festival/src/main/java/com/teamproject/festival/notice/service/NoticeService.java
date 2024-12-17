@@ -75,4 +75,20 @@ public class NoticeService {
 
         return noticeDto;
     }
+
+    public boolean validateNoticeId(String noId, String id) {
+        String loginUserId = userMapper.findUserId(id);
+
+        String noticeUserId = noticeMapper.findUserId(noId);
+
+        if (loginUserId != noticeUserId) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public int noticeDelete(String noId) {
+        return noticeMapper.noticeDelete(noId);
+    }
 }

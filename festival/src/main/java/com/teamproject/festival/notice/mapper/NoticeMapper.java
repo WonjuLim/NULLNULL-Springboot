@@ -22,4 +22,8 @@ public interface NoticeMapper {
     int updateCount(String noId);
 
     int noticeInsert(NoticeDto noticeDto);
+
+    String findUserId(String noId);
+
+    int noticeDelete(String noId);
 }

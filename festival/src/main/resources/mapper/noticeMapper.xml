@@ -26,18 +26,33 @@
 
     <!-- 공지사항 디테일 -->
     <select id="noticeDetail" parameterType="String" resultType="noticeDto">
-        SELECT no_id, reg_id, no_title, no_rgdate, no_text, no_file, no_count
-        FROM notice
+        SELECT notice.no_id, notice.reg_id, notice.no_title, notice.no_text, notice.no_count, notice.no_rgdate, user.user_id, user.user_name
+        FROM notice JOIN user ON user.user_id = notice.reg_id
         WHERE no_id = #{noId}
     </select>
 
+    <!-- 조회수 증가 -->
     <update id="updateCount" parameterType="String">
         UPDATE notice
         SET no_count = no_count + 1
         WHERE no_id = #{noId}
     </update>
 
+    <!-- 공지사항 작성 -->
     <insert id="noticeInsert" parameterType="noticeDto" useGeneratedKeys="true" keyProperty="noId" keyColumn="no_id">
         CALL insert_no_id_proc(#{regId}, #{noTitle}, #{noText}, #{noFile});
     </insert>
+
+    <!-- 본인이 맞는지 확인 -->
+    <select id="findUserId" parameterType="String" resultType="String">
+        SELECT notice.reg_id
+        FROM notice JOIN user ON notice.reg_id = user.user_id
+        WHERE no_id = #{noId}
+    </select>
+
+    <!-- 삭제 -->
+    <delete id="noticeDelete" parameterType="String">
+        DELETE FROM notice
+        WHERE no_id = #{noId}
+    </delete>
 </mapper>

@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../../static/css/gather.css">
 
 <div layout:fragment="content">
 
@@ -49,31 +51,31 @@
                             <span class="checkbox_name">10대</span>
                         </label>
                         <label class="checkbox_label">
-                            <input type="checkbox" name="prefer_age" value="20대" th:checked="${preferAge == '10대'}">
+                            <input type="checkbox" name="prefer_age" value="20대" th:checked="${preferAge == '20대'}">
                             <span class="checkbox_icon"></span>
                             <span class="checkbox_name">20대</span>
                         </label>
                     </div>
                     <div>
                         <label class="checkbox_label">
-                            <input type="checkbox" name="prefer_age" value="30대" th:checked="${preferAge == '10대'}">
+                            <input type="checkbox" name="prefer_age" value="30대" th:checked="${preferAge == '30대'}">
                             <span class="checkbox_icon"></span>
                             <span class="checkbox_name">30대</span>
                         </label>
                         <label class="checkbox_label">
-                            <input type="checkbox" name="prefer_age" value="40대" th:checked="${preferAge == '10대'}">
+                            <input type="checkbox" name="prefer_age" value="40대" th:checked="${preferAge == '40대'}">
                             <span class="checkbox_icon"></span>
                             <span class="checkbox_name">40대</span>
                         </label>
                     </div>
                     <div>
                         <label class="checkbox_label">
-                            <input type="checkbox" name="prefer_age" value="50대" th:checked="${preferAge == '10대'}">
+                            <input type="checkbox" name="prefer_age" value="50대" th:checked="${preferAge == '50대'}">
                             <span class="checkbox_icon"></span>
                             <span class="checkbox_name">50대</span>
                         </label>
                         <label class="checkbox_label">
-                            <input type="checkbox" name="prefer_age" value="60대 이상" th:checked="${preferAge == '10대'}">
+                            <input type="checkbox" name="prefer_age" value="60대 이상" th:checked="${preferAge == '60대 이상'}">
                             <span class="checkbox_icon"></span>
                             <span class="checkbox_name">60대 이상</span>
                         </label>
@@ -102,7 +104,7 @@
             </div> <!-- filterMain -->
             <ul class="gatherList">
                 <li>
-                <div class="gatherMain" th:each="gather:${gatherList[0]}">
+                <div class="gatherMain" th:each="gather:${gatherList}">
                     <a th:href="'/gather/' + ${gather.gatherId}">
                         <h1 th:text="${gather.gatherId}">Title</h1>
                         <p>
@@ -116,72 +118,72 @@
                 </div>  <!--gatherMain-->
 
                 </li>
-                <li>
-                    <div class="gatherMain"  th:each="gather:${gatherList[1]}">
-                        <h1 th:text="${gather.gatherId}">Title</h1>
-                        <p>
-                            <img src="../../static/img/listbackground.png">
-                            <span th:text="${gather.gtTitle}"></span>
-                            <span th:text="${gather.gtRgDate}"></span>
-                            <span th:text="${gather.userId}"></span>
-                            <span th:text="${gather.gtCount}"></span>
-                        </p>
-                    </div>  <!--gatherMain-->
-                </li>
+<!--                <li>-->
+<!--                    <div class="gatherMain"  th:each="gather:${gatherList}">-->
+<!--                        <h1 th:text="${gather.gatherId}">Title</h1>-->
+<!--                        <p>-->
+<!--                            <img src="../../static/img/listbackground.png">-->
+<!--                            <span th:text="${gather.gtTitle}"></span>-->
+<!--                            <span th:text="${gather.gtRgDate}"></span>-->
+<!--                            <span th:text="${gather.userId}"></span>-->
+<!--                            <span th:text="${gather.gtCount}"></span>-->
+<!--                        </p>-->
+<!--                    </div>  &lt;!&ndash;gatherMain&ndash;&gt;-->
+<!--                </li>-->
             </ul>
-            <ul class="gatherList">
-                <li>
-                    <div class="gatherMain" th:each="gather:${gatherList[2]}">
-                        <h1 th:text="${gather.gatherId}">Title</h1>
-                        <p>
-                            <img src="../../static/img/listbackground.png">
-                            <span th:text="${gather.gtTitle}"></span>
-                            <span th:text="${gather.gtRgDate}"></span>
-                            <span th:text="${gather.userId}"></span>
-                            <span th:text="${gather.gtCount}"></span>
-                        </p>
-                        </a>
-                    </div>  <!--gatherMain-->
-                </li>
-                <li>
-                    <div class="gatherMain" th:each="gather:${gatherList[3]}">
-                        <h1 th:text="${gather.gatherId}">Title</h1>
-                        <p>
-                            <img src="../../static/img/listbackground.png">
-                            <span th:text="${gather.gtTitle}"></span>
-                            <span th:text="${gather.gtRgDate}"></span>
-                            <span th:text="${gather.userId}"></span>
-                            <span th:text="${gather.gtCount}"></span>
-                        </p>
-                    </div>  <!--gatherMain-->
-                </li>
-            </ul>
-            <ul class="gatherList">
-                <li>
-                    <div class="gatherMain" th:each="gather:${gatherList[4]}">
-                        <h1 th:text="${gather.gatherId}">Title</h1>
-                        <p>
-                            <img src="../../static/img/listbackground.png">
-                            <span th:text="${gather.gtTitle}"></span>
-                            <span th:text="${gather.gtRgDate}"></span>
-                            <span th:text="${gather.userId}"></span>
-                            <span th:text="${gather.gtCount}"></span>
-                        </p>
-                    </div>  <!--gatherMain-->
-                </li>
-                <li>
-                    <div class="gatherMain" th:each="gather:${gatherList[5]}">
-                        <h1 th:text="${gather.gatherId}">Title</h1>
-                        <p>
-                            <img src="../../static/img/listbackground.png">
-                            <span th:text="${gather.gtTitle}"></span>
-                            <span th:text="${gather.gtRgDate}"></span>
-                            <span th:text="${gather.userId}"></span>
-                            <span th:text="${gather.gtCount}"></span>
-                        </p>
-                    </div>  <!--gatherMain-->
-                </li>
-            </ul>
+<!--            <ul class="gatherList">-->
+<!--                <li>-->
+<!--                    <div class="gatherMain" th:each="gather:${gatherList}">-->
+<!--                        <h1 th:text="${gather.gatherId}">Title</h1>-->
+<!--                        <p>-->
+<!--                            <img src="../../static/img/listbackground.png">-->
+<!--                            <span th:text="${gather.gtTitle}"></span>-->
+<!--                            <span th:text="${gather.gtRgDate}"></span>-->
+<!--                            <span th:text="${gather.userId}"></span>-->
+<!--                            <span th:text="${gather.gtCount}"></span>-->
+<!--                        </p>-->
+<!--                        </a>-->
+<!--                    </div>  &lt;!&ndash;gatherMain&ndash;&gt;-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <div class="gatherMain" th:each="gather:${gatherList}">-->
+<!--                        <h1 th:text="${gather.gatherId}">Title</h1>-->
+<!--                        <p>-->
+<!--                            <img src="../../static/img/listbackground.png">-->
+<!--                            <span th:text="${gather.gtTitle}"></span>-->
+<!--                            <span th:text="${gather.gtRgDate}"></span>-->
+<!--                            <span th:text="${gather.userId}"></span>-->
+<!--                            <span th:text="${gather.gtCount}"></span>-->
+<!--                        </p>-->
+<!--                    </div>  &lt;!&ndash;gatherMain&ndash;&gt;-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--            <ul class="gatherList">-->
+<!--                <li>-->
+<!--                    <div class="gatherMain" th:each="gather:${gatherList}">-->
+<!--                        <h1 th:text="${gather.gatherId}">Title</h1>-->
+<!--                        <p>-->
+<!--                            <img src="../../static/img/listbackground.png">-->
+<!--                            <span th:text="${gather.gtTitle}"></span>-->
+<!--                            <span th:text="${gather.gtRgDate}"></span>-->
+<!--                            <span th:text="${gather.userId}"></span>-->
+<!--                            <span th:text="${gather.gtCount}"></span>-->
+<!--                        </p>-->
+<!--                    </div>  &lt;!&ndash;gatherMain&ndash;&gt;-->
+<!--                </li>-->
+<!--                <li>-->
+<!--                    <div class="gatherMain" th:each="gather:${gatherList}">-->
+<!--                        <h1 th:text="${gather.gatherId}">Title</h1>-->
+<!--                        <p>-->
+<!--                            <img src="../../static/img/listbackground.png">-->
+<!--                            <span th:text="${gather.gtTitle}"></span>-->
+<!--                            <span th:text="${gather.gtRgDate}"></span>-->
+<!--                            <span th:text="${gather.userId}"></span>-->
+<!--                            <span th:text="${gather.gtCount}"></span>-->
+<!--                        </p>-->
+<!--                    </div>  &lt;!&ndash;gatherMain&ndash;&gt;-->
+<!--                </li>-->
+<!--            </ul>-->
         </div>
     </div>
     

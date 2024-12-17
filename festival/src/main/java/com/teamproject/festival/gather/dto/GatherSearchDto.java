@@ -27,7 +27,6 @@ public class GatherSearchDto {
     // 선호 연령대
     private String preferAge;
 
-
     // 축제명 도는 축제에 대한 상세 설명
     private String searchBy;
 

@@ -2,50 +2,284 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
+
+<meta charset="UTF-8">
+
+<th:block layout:fragment="css">
+    <style>
+        @charset "utf-8";
+
+        *{margin: 0;padding: 0;}
+        body{
+            font-family: "Noto Sans KR", sans-serif;
+            font-size: 13px;
+            line-height: 20px;
+            color: rgb(20, 20, 20);
+            background-image:url('../../static/img/background_img.png');
+            background-size: cover;
+            table-layout: fixed;
+        }
+        ul, ol{list-style: none;}
+        img{vertical-align: top; border: 0;}
+        a{text-decoration: none; color: rgb(20, 20, 20);}
+
+        .wrap{
+            position: relative;
+            width: 1000px;
+            min-height: 1200px;
+            margin: 0 auto;
+        }
+
+        .notDet{
+            width: 1000px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+
+        .notDetTable{
+            table-layout: fixed;
+            text-align: center;
+            padding: 10px;
+            width: 900px;
+            margin: 0 auto;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border: 0;
+            background-color: rgb(255, 255, 255,0.8);
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        .notDetTitle{
+            text-align: left;
+            width: 70%;
+            font-size: 12px;
+        }
+
+        .notDetTitle2{
+            text-align: left;
+            margin: 10px 15px;
+            position: relative;
+            font-size: 25px;
+            line-height: 25px;
+            padding: 10px;
+            border: 0.1px solid rgb(226, 226, 226);
+            border-radius: 10px;
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        /* 제목 end */
+
+        .NDB{
+            width: 800px;
+            margin: 0 auto;
+            padding: 50px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border: 0;
+            background-image: linear-gradient(to left, rgb(245, 194, 255,0.8),  rgb(205, 227, 255, 0.8));
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        .NDBTable{
+            table-layout: fixed;
+            text-align: center;
+            padding: 10px;
+            width: 800px;
+            margin: 0 auto;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            border: 0;
+            background-color: rgb(255, 255, 255);
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        .NDBTitle{
+            text-align: left;
+            width: 50%;
+            font-size: 12px;
+        }
+
+        .NDBTable .NDBTitle2 td{
+            text-align: center;
+            font-size: 20px;
+            line-height: 20px;
+            padding: 10px;
+            border: 0.1px solid rgb(226, 226, 226);
+            border-radius: 10px;
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        /* 선호end */
+
+        .notDetcontain{
+            margin: 0 auto;
+            margin-bottom: 40px;
+            width: 800px;
+            min-height: 300px;
+            border: 0.1px solid rgb(226, 226, 226);
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        .notDetcontain p{
+            margin: 15px;
+        }
+
+        /* 내용end */
+
+        .joinform{
+            position: absolute;
+            top: 135px;
+            left: -200px;
+            text-align: center;
+            margin: 0 auto;
+            padding: 20px 0px;
+            width: 200px;
+            border: 0.1px solid rgb(226, 226, 226);
+            background-color:  rgb(205, 227, 255, 0.8);
+            border-radius: 10px;
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+
+
+        .joinformTitle{
+            color: white;
+            font-style: italic;
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 30px;
+            background-image: linear-gradient(to left, rgb(239, 161, 255),  rgb(152, 197, 255));
+            text-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        .joinformTitleS{
+            color: white;
+            font-style: italic;
+            font-weight: bold;
+            font-size: 10px;
+            margin-bottom: 10px;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        .jfSelect{
+            color: white;
+            font-weight: bold;
+            text-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        .searchBtn{
+            margin-top: 10px;
+        }
+
+        select, input[type=text]{
+            width: 100px;
+            padding: 5px 0;
+            text-align: center;
+            font-size: 15px;
+            margin: 10px;
+            border: 0.1px solid rgb(226, 226, 226);
+            border-radius: 10px;
+            background-color: rgb(255, 255, 255);
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        input[type=submit]{
+            width: 100px;
+            padding: 10px 0;
+            font-weight: bold;
+            text-align: center;
+            font-size: 15px;
+            margin: 10px;
+            border: 0.1px solid rgb(226, 226, 226);
+            border-radius: 10px;
+            background-color: rgb(255, 255, 255);
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        input[type=submit]:hover{
+            background-color: rgb(245, 194, 255);
+            transition: 0.6s;
+            color: rgb(142,32,149);
+            border: 0.1px solid rgb(245, 194, 255);
+        }
+
+        input[type=submit]:active{
+            background-color: rgb(215, 167, 224);
+            transition: 0.3s;
+        }
+
+    </style>
+</th:block>
+
 <div layout:fragment="content">
     <div class="wrap">
-        <div class="detail">
-            <div class="detailImg">
-                <img src="" alt="">이미지
-            </div>
+        <!-- !!!!!!!!!!!!타임리프수정필요!!!!!!!!!! -->
+        <div class="notDet" layout:fragment="content">
+            <table class="notDetTable">
+                <thead>
+                <td class="notDetTitle"> 공지 > </td>
+                <td>등록자</td>
+                <td>작성일자</td>
+                <td>조회수</td>
+                </thead>
+                <tr th:each="notice: ${notice}">
+                    <td class="notDetTitle2" th:text="${notice.noTitle}">제목</td>
+                    <td th:text="${notice.regId}">등록자</td>
+                    <td th:text="${notice.noRgDate}">0000-00-00</td>
+                    <td th:text="${notice.noCount}">00</td>
+                </tr>
+            </table>
 
-            <div class="detailMain">
-                <div class="detailHead">
-                    <div class="detailTitle">
-                        <p>제목</p>
-                    </div>
-                    <div class="detailRgDate">
-                        <p>등록일</p>
-                    </div>
-                    <div class="detailHits">
-                        <p>조회수</p>
-                    </div>
-                    <div class="detailRgName">
-                        <p>등록자</p>
-                    </div>
+            <div class="NDB">
+                <table class="NDBTable">
+                    <thead>
+                    <td class="NDBTitle"> 축제이름 > </td>
+                    <td>동행인원수</td>
+                    <td>선호연령</td>
+                    <td>선호성별</td>
+                    </thead>
+                    <tr class="NDBTitle2" th:each="notice: ${notice}">
+                        <td th:text="${notice.noTitle}">축제명</td>
+                        <td th:text="${notice.regId}">1명/0명</td>
+                        <td th:text="${notice.noRgDate}">20대</td>
+                        <td th:text="${notice.noCount}">여</td>
+                    </tr>
+                </table>
+                <div class="notDetcontain" th:each="notice: ${notice}">
+                    <p th:text="${notice.noText}">내용</p>
                 </div>
-
-                <div class="detailBody">
-                    <p>내용</p>
-                </div>
-
-                <div class="detailFooter">
-                    <div class="detailDate">
-                        <p>축제일자</p>
+                <!-- !!!!!!타임리프수정필요!!!!!!! -->
+                <form class="joinform" action=" " role="form" method="post" th:object="${userJoinForm}">
+                    <div class="jft">
+                        <div class="joinformTitle">동행신청하기</div>
+                        <div class="joinformTitleS">10초만에 간단히 신청!</div>
                     </div>
-                    <div class="detailMember">
-                        <p>동행인원수</p>
+                    <div class="jfSelect">연령
+                        <select th:field="*{searchDateType}" class="form-control" >
+                            <option value="10대">10대</option>
+                            <option value="20대">20대</option>
+                            <option value="30대">30대</option>
+                            <option value="40대">40대</option>
+                            <option value="50대">50대</option>
+                            <option value="60대 이상">60대 이상</option>
+                        </select>
                     </div>
-                    <div class="detailGender">
-                        <p>선호연령</p>
+                    <div class="jfSelect">성별
+                        <select th:field="*{searchDateType}" class="form-control" >
+                            <option value="여">여</option>
+                            <option value="남">남</option>
+                        </select>
                     </div>
-                    <div class="detailAge">
-                        <p>선호나이대</p>
+                    <div class="jfSelect">인원
+                        <input type="text" name="people" id="people" placeholder="신청인원">
                     </div>
-                </div>
-                
+                    <p class="searchBtn"><input type="submit" value="동행신청"></p>
+                </form>
             </div>
         </div>
+
     </div>
 </div>
 </html>

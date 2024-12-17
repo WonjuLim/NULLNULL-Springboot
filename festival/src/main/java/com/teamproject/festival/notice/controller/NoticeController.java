@@ -14,10 +14,12 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -143,4 +145,41 @@ public class NoticeController {
 
         return "redirect:/notices";
     }
+
+    // 공지사항 삭제
+    @PostMapping("/notice/{noId}/cancel")
+    public ResponseEntity<Map<String, Object>> deleteNotice(@PathVariable("noId") String noId,
+                                                            Principal principal) {
+        // 현재 로그인 사용자 ID
+        String loggedInUserId = principal.getName();
+
+        // 삭제 권한 검증: 공지사항 작성자와 로그인 사용자 ID 비교
+        NoticeDto notice = noticeService.noticeDetail(noId);
+        if (!notice.getRegId().equals(loggedInUserId)) {
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "공지사항 삭제 권한이 없습니다.");
+            response.put("status", HttpStatus.FORBIDDEN.value());
+            return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+        }
+
+        try {
+            // 공지사항 삭제 처리
+            noticeService.noticeDelete(noId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "공지사항 삭제 중 오류가 발생했습니다.");
+            response.put("error", e.getMessage());
+            response.put("status", HttpStatus.BAD_REQUEST.value());
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+
+        // 성공적으로 삭제된 경우 JSON 반환
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "공지사항이 삭제되었습니다.");
+        response.put("deletedNoticeId", noId);
+        response.put("status", HttpStatus.OK.value());
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 }

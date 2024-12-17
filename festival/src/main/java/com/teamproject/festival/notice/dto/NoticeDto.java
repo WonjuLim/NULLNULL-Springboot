@@ -17,4 +17,5 @@ public class NoticeDto {
     private String noText;
     private String noFile;
     private Integer noCount;
+    private String userName;
 }
