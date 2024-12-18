@@ -1,7 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout}">
 <meta charset="UTF-8">
+
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+
+        $(document).ready(function() {
+            $("#searchBtn").on("click", function(e) {
+                e.preventDefault();
+                page(1);
+            })
+        });
+
+        function page(page){
+            let searchftStdate=$("#searchftStdate").val();
+            let searchftAddress=$("#searchftAddress").val();
+            let searchftName=$("#searchftName").val();
+
+            location.href="/festival/festivalList/"+page+
+                           "?searchftStdate=" + searchftStdate +
+                           "&searchftAddress=" + searchftAddress +
+                           "&searchftName=" + searchftName;
+        }
+    </script>
+</th:block>
+
 <th:block layout:fragment="css">
     <style>
         @charset "utf-8";
@@ -12,7 +37,7 @@
             font-size: 13px;
             line-height: 20px;
             color: rgb(20, 20, 20);
-            background-image:url('../img/background_img.png');
+            background-image: linear-gradient(to left,rgba(199, 187, 255, 0.5),  rgba(255, 193, 203, 0.8), rgba(255, 193, 203, 0.8)40%, rgb(205, 227, 255, 0.4) 70%, rgb(205, 227, 255, 0.8) 100%);
             background-size: cover;
           }
         ul, ol{list-style: none;}
@@ -232,6 +257,21 @@
             line-height: 18px;
         }
 
+        .infos1_2_1{
+            width: 140px;
+            left: 100px;
+        }
+
+
+        .infos1_2_2{
+            left: 220px;
+        }
+
+        .infos1_2_3{
+            width: 140px;
+            left: 250px;
+        }
+
         .infos1_3{
             top: 190px;
             left: 380px;
@@ -268,174 +308,165 @@
         .inimg img{
             width: 1000px;
         }
+
+        .pageHandlers ul{
+            width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+
+        .pageHandlers ul li{
+            cursor: pointer;
+            padding: 5px 10px;
+            margin: 10px;
+            border: 0.1px solid rgb(226, 226, 226);
+            border-radius: 10px;
+            background-color: rgb(255, 255, 255);
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        .pageHandlers ul li:hover{
+            background-color: rgb(245, 194, 255);
+            transition: 0.6s;
+            border: 0.1px solid rgb(245, 194, 255);
+        }
+
+        .pageHandlers ul li:active{
+            background-color: rgb(215, 167, 224);
+            transition: 0.3s;
+        }
     </style>
 </th:block>
 
-</head>
-
 <div class="wrap" layout:fragment="content">
-<!--MainHeader 들어올 공간-->
-<div class="wrap">
-    <div class="infoMain">
-        <div class="inT">
-            <p class="infoTitle">축제 검색</p>
-            <p class="infoBackground"></p>
-        </div>
-        <p class="infoDis">원하는 내용을 검색해보세요!</p>
-        <div class="info">
-            <ul class="infoG1">
-                <li><input type="date" placeholder="날짜" name="selDate"></li>
-                <li><input type="text" placeholder="지역" name="selWhere"></li>
-                <li><input type="text" placeholder="키워드" name="selThem"></li>
-                <li><button type="submit" value="검색">검색</button></li>
-            </ul>
-        </div>
-    </div>
-
-    <div class="FestivalMain">
-        <div class="mainBn">
-            <div class="l_move"><img src="../../static/img/a_left.png" alt="l_moveBtn"></div>
-            <div class="r_move"><img src="../../static/img/a_right.png" alt="r_moveBtn"></div>
-            <div class="mainImg">
-                <div class="mainImgList">
-                    <div class="ImgBn">
-                        <a href=""><img class="ImgBnIn" src="../../static/img/slide1.jpg" alt="First slide"></a>
-                    </div>
-                    <div class="ImgBn">
-                        <a href=""><img class="ImgBnIn" src="../../static/img/slide2.jpg" alt="Second  slide"></a>
-                    </div>
-                    <div class="ImgBn">
-                        <a href=""><img class="ImgBnIn" src="../../static/img/slide3.jpg" alt="Third slide"></a>
-                    </div>
-                    <div class="ImgBn">
-                        <a href=""><img class="ImgBnIn" src="../../static/img/slide4.jpg" alt="Third slide"></a>
-                    </div>
-                    <div class="ImgBn">
-                        <a href=""><img class="ImgBnIn" src="../../static/img/slide5.jpg" alt="Third slide"></a>
-                    </div>
+    <!--MainHeader 들어올 공간-->
+    <div class="wrap">
+        <form th:action="@{'/festival/festivalList/'+ ${page}}" th:object="${festival}" role="form" method="get">
+            <div class="infoMain" >
+                <div class="inT">
+                    <p class="infoTitle">축제 검색</p>
+                    <p class="infoBackground"></p>
+                </div>
+                <p class="infoDis">원하는 내용을 검색해보세요!</p>
+                <div class="info" th:object="${festivalSearchDto}">
+                    <ul class="infoG1">
+                        <li><input type="date" th:field="*{searchftStdate}" placeholder="날짜" name="selDate"></li>
+                        <li><input type="text" th:field="*{searchftAddress}" placeholder="지역" name="selWhere"></li>
+                        <li><input type="text" th:field="*{searchftName}" placeholder="축제명" name="selThem"></li>
+                        <li><button id="searchBtn" type="submit">검색</button></li>
+                    </ul>
                 </div>
             </div>
-            <script>
-                const prev = document.querySelector('.l_move');
-                const next = document.querySelector('.r_move');
-                const slideBox = document.querySelector('.mainImgList')
-                const slide = document.querySelectorAll('.ImgBn img')
-                const slideLength = slide.length
-                let currentIndex = 0;
 
-                const moveSlide = function(num){
-                    slideBox.style.transform = `translateX(${-num * 1200}px)`;
-                    currentIndex = num;
-                }
+            <div class="FestivalMain">
+                <div class="mainBn">
+                    <div class="l_move"><img src="../../img/a_left.png" alt="l_moveBtn"></div>
+                    <div class="r_move"><img src="../../img/a_right.png" alt="r_moveBtn"></div>
+                    <div class="mainImg">
+                        <div class="mainImgList">
+                            <div class="ImgBn">
+                                <a href=""><img class="ImgBnIn" src="../../img/slide1.jpg" alt="First slide"></a>
+                            </div>
+                            <div class="ImgBn">
+                                <a href=""><img class="ImgBnIn" src="../../img/slide2.jpg" alt="Second  slide"></a>
+                            </div>
+                            <div class="ImgBn">
+                                <a href=""><img class="ImgBnIn" src="../../img/slide3.jpg" alt="Third slide"></a>
+                            </div>
+                            <div class="ImgBn">
+                                <a href=""><img class="ImgBnIn" src="../../img/slide4.jpg" alt="Third slide"></a>
+                            </div>
+                            <div class="ImgBn">
+                                <a href=""><img class="ImgBnIn" src="../../img/slide5.jpg" alt="Third slide"></a>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        const prev = document.querySelector('.l_move');
+                        const next = document.querySelector('.r_move');
+                        const slideBox = document.querySelector('.mainImgList')
+                        const slide = document.querySelectorAll('.ImgBn img')
+                        const slideLength = slide.length
+                        let currentIndex = 0;
 
-                prev.addEventListener('click', ()=>{
-                    if(currentIndex !== 0){
-                        moveSlide(currentIndex -1)
-                    }
-                })
+                        const moveSlide = function(num){
+                            slideBox.style.transform = `translateX(${-num * 1200}px)`;
+                            currentIndex = num;
+                        }
 
-                next.addEventListener('click', ()=>{
-                    if(currentIndex !== slideLength -1){
-                        moveSlide(currentIndex +1)
-                    }
-                })
-            </script>
-        </div>
+                        prev.addEventListener('click', ()=>{
+                            if(currentIndex !== 0){
+                                moveSlide(currentIndex -1)
+                            }
+                        })
 
-        <div class="infoList">
-            <div class="infoListIn">
-                <!-- 백그라운드로 이미지 깔기 (페이지당 축제 관련 이미지 5개)
-                해당 이미지 내 상세보기 클릭 시 해당 축제 상세정보로 이동 -->
-                <ul class="infoLists">
-                    <li>
-                        <a href="">
-                            <div class="infoMain2">
-                                <div class="inimg"><img src="../../static/img/slide1.jpg"></div>
-                                <div class="inimg1"></div>
-                                <div class="infoT">Title</div>
-                                <div class="infos1">
-                                    <span class="infos1_1">설명</span>
-                                    <span class="infos1_2">개최일 > 0000-00-00 ~ 0000-00-00</span>
-                                    <span class="infos1_3">주최: 00000000</span>
-                                </div>
-                            </div><!--gatherMain-->
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <div class="infoMain2">
-                                <div class="inimg"><img src="../../static/img/slide1.jpg"></div>
-                                <div class="inimg1"></div>
-                                <div class="infoT">Title</div>
-                                <div class="infos1">
-                                    <span class="infos1_1">설명</span>
-                                    <span class="infos1_2">개최일 > 0000-00-00 ~ 0000-00-00</span>
-                                    <span class="infos1_3">주최: 00000000</span>
-                                </div>
-                            </div><!--gatherMain-->
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <div class="infoMain2">
-                                <div class="inimg"><img src="../../static/img/slide1.jpg"></div>
-                                <div class="inimg1"></div>
-                                <div class="infoT">Title</div>
-                                <div class="infos1">
-                                    <span class="infos1_1">설명</span>
-                                    <span class="infos1_2">개최일 > 0000-00-00 ~ 0000-00-00</span>
-                                    <span class="infos1_3">주최: 00000000</span>
-                                </div>
-                            </div><!--gatherMain-->
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <div class="infoMain2">
-                                <div class="inimg"><img src="../../static/img/slide1.jpg"></div>
-                                <div class="inimg1"></div>
-                                <div class="infoT">Title</div>
-                                <div class="infos1">
-                                    <span class="infos1_1">설명</span>
-                                    <span class="infos1_2">개최일 > 0000-00-00 ~ 0000-00-00</span>
-                                    <span class="infos1_3">주최: 00000000</span>
-                                </div>
-                            </div><!--gatherMain-->
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <div class="infoMain2">
-                                <div class="inimg"><img src="../../static/img/slide1.jpg"></div>
-                                <div class="inimg1"></div>
-                                <div class="infoT">Title</div>
-                                <div class="infos1">
-                                    <span class="infos1_1">설명</span>
-                                    <span class="infos1_2">개최일 > 0000-00-00 ~ 0000-00-00</span>
-                                    <span class="infos1_3">주최: 00000000</span>
-                                </div>
-                            </div><!--gatherMain-->
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- 리스트 내용들 -->
-        <div class="FestivalMain">
-            <div class="mainSlide" th:each="festival : ${festival}">
-                <!-- 슬라이드 될 이미지 3개 정도 -->
-                <div>
-                    <p th:text="${festival.ftId}"></p>
-                    <a th:href="'/festival/detail/' + ${festival.ftId}"><p th:text="${festival.ftName}"></p></a>
-                    개최일 > <span th:text="${festival.ftStdate}"></span> ~ <span th:text="${festival.ftEddate}"></span>
+                        next.addEventListener('click', ()=>{
+                            if(currentIndex !== slideLength -1){
+                                moveSlide(currentIndex +1)
+                            }
+                        })
+                    </script>
                 </div>
-                <!-- 좌우 버튼 -->
-                <p class="msBtnL"><a href=""><img src="./a_left.png" alt=""></a></p>
-                <p class="msBtnR"><a href=""><img src="./a_right.png" alt=""></a></p>
+
+                <div class="infoList">
+                    <div class="infoListIn">
+                        <!-- 백그라운드로 이미지 깔기 (페이지당 축제 관련 이미지 5개)
+                        해당 이미지 내 상세보기 클릭 시 해당 축제 상세정보로 이동 -->
+
+                        <ul class="infoLists">
+                            <li th:each="festival : ${festival}" >
+                                <a th:href="'/festival/detail/' + ${festival.ftId}">
+                                    <div class="infoMain2">
+                                        <div class="inimg"><img src="../../img/slide1.jpg"></div>
+                                        <div class="inimg1"></div>
+
+                                        <div class="infoT" th:text="${festival.ftName}">Title</div>
+                                        <div class="infos1">
+                                            <span class="infos1_1" th:text="${festival.ftText}">설명</span>
+                                            <span class="infos1_2">
+                                                개최일 >
+                                                <span class="infos1_2_1" th:text="${festival.ftStdate}">0000-00-00 </span>
+                                                <span class="infos1_2_2"> ~ </span>
+                                                <span class="infos1_2_3" th:text="${festival.ftEddate}"> 0000-00-00</span>
+                                            </span>
+                                        </div>
+                                    </div><!--gatherMain-->
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="pageHandlers" th:with="start=${pageHandler.beginPage}, end=${pageHandler.endPage}">
+                    <ul class="pagination justify-content-center">
+
+                        <li th:if="${not pageHandler.firstPage}"
+                            th:classappend="${pageHandler.firstPage} ? 'disabled' : ''" class="page-item">
+                            <a th:onclick="'javascript:page(' + ${pageHandler.page-1} + ')'" aria-label='Previous'
+                               class="page-link">
+                                <span aria-hidden='true'>Previous</span>
+                            </a>
+                        </li>
+
+                        <li th:each="page: ${#numbers.sequence(start, end)}"
+                            th:classappend="${pageHandler.page eq page} ? 'active' : ''"
+                            class="page-item">
+                            <a th:onclick="'javascript:page(' + ${page} + ')'"
+                               th:inline="text" class="page-link">[[${page}]]</a>
+                        </li>
+
+                        <li th:if="${not pageHandler.lastPage}"
+                            th:classappend="${pageHandler.lastPage} ? 'disabled' : ''"
+                            class="page-item">
+                            <a th:onclick="'javascript:page(' + ${pageHandler.page + 1} + ')'"
+                               aria-label='Next' class="page-link">
+                                <span aria-hidden='true'>Next</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
-
 </html>

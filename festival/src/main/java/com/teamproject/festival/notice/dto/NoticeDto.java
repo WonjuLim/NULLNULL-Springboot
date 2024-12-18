@@ -18,4 +18,5 @@ public class NoticeDto {
     private String noFile;
     private Integer noCount;
     private String userName;
+    private LocalDate noUdDate;
 }

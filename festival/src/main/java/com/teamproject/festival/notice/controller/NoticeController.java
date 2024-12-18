@@ -19,10 +19,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -108,8 +105,6 @@ public class NoticeController {
             return "redirect:/login"; // 로그인이 필요한 경우 처리
         }
 
-        System.out.println("받아온 ID : " + userId);
-
         model.addAttribute("noticeForm", new NoticeForm());
         model.addAttribute("regId", userId);
 
@@ -182,4 +177,42 @@ public class NoticeController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @GetMapping("/notice/update/{noId}")
+    public String updateForm(@PathVariable("noId") String noId, Model model) {
+        NoticeDto notice = noticeService.noticeDetail(noId);
+        model.addAttribute("notice", notice);
+        return "notice/noticeUpdate";
+    }
+
+    @PostMapping("/notice/update/{noId}")
+    public String updateNotice(@PathVariable("noId") String noId,
+                               @ModelAttribute("noticeForm") @Valid NoticeForm noticeForm,
+                               BindingResult bindingResult,
+                               Principal principal,
+                               Model model) {
+        if (bindingResult.hasErrors()) {
+            // 폼 에러가 있을 경우 다시 수정 페이지로 보냄
+            model.addAttribute("notice", noticeForm);
+            return "notice/noticeUpdate";
+        }
+
+        try {
+            // 작성자 검증 (현재 로그인 사용자와 작성자 비교)
+            NoticeDto existingNotice = noticeService.noticeDetail(noId);
+            if (!existingNotice.getRegId().equals(principal.getName())) {
+                model.addAttribute("errorMessage", "수정 권한이 없습니다.");
+                return "notice/noticeUpdate";
+            }
+
+            // NoticeForm에 noId를 설정해 업데이트
+            noticeForm.setNoId(noId);
+            noticeService.noticeUpdate(noticeForm);
+
+            // 수정 후 리스트 페이지로 리다이렉트
+            return "redirect:/notices";
+        } catch (Exception e) {
+            model.addAttribute("errorMessage", "공지사항 수정 중 오류가 발생했습니다.");
+            return "notice/noticeUpdate";
+        }
+    }
 }

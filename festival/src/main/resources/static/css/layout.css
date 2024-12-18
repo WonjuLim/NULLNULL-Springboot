@@ -6,7 +6,7 @@ body {
     font-size: 13px;
     line-height: 20px;
     color: rgb(20, 20, 20);
-    background-image:url('../img/background_img.png');
+    background-image: linear-gradient(to left,rgba(199, 187, 255, 0.5),  rgba(255, 193, 203, 0.8), rgba(255, 193, 203, 0.8)40%, rgb(205, 227, 255, 0.4) 70%, rgb(205, 227, 255, 0.8) 100%);
     background-size: cover;
   }
 ul, ol{list-style: none;}

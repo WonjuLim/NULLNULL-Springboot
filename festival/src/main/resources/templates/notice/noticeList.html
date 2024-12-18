@@ -14,7 +14,7 @@
             font-size: 13px;
             line-height: 20px;
             color: rgb(20, 20, 20);
-            background-image:url('../img/background_img.png');
+            background-image: linear-gradient(to left,rgba(199, 187, 255, 0.5),  rgba(255, 193, 203, 0.8), rgba(255, 193, 203, 0.8)40%, rgb(205, 227, 255, 0.4) 70%, rgb(205, 227, 255, 0.8) 100%);
             background-size: cover;
             table-layout: fixed;
           }
@@ -174,34 +174,33 @@
             background-color: rgb(215, 167, 224);
             transition: 0.3s;
         }
+
+        .writeButton[type=submit]{
+            width: 100px;
+            padding: 11px 0;
+            font-weight: bold;
+            text-align: center;
+            font-size: 15px;
+            margin: 10px;
+            border: 0.1px solid rgb(226, 226, 226);
+            border-radius: 10px;
+            background-color: rgb(255, 255, 255);
+            box-shadow : 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+        }
+
+        .writeButton[type=submit]:hover{
+            background-color: rgb(245, 194, 255);
+            transition: 0.6s;
+            color: rgb(142,32,149);
+            border: 0.1px solid rgb(245, 194, 255);
+        }
+
+        .writeButton[type=submit]:active{
+            background-color: rgb(215, 167, 224);
+            transition: 0.3s;
+        }
     </style>
 </th:block>
-
-<!-- 사용자 스크립트 추가 -->
-<!--<th:block layout:fragment="script">-->
-<!--    <script th:inline="javascript">-->
-
-<!--        $(document).ready(function() {-->
-<!--            $("#searchBtn").on("click", function(e) {-->
-<!--                e.preventDefault();-->
-<!--                page(1);-->
-<!--            })-->
-<!--        });-->
-
-<!--        function page(page){-->
-<!--            let searchDateType=$("#searchDateType").val();-->
-<!--            let searchSellStatus=$("#searchSellStatus").val();-->
-<!--            let searchBy=$("#searchBy").val();-->
-<!--            let searchText=$("#searchText").val();-->
-
-<!--            location.href="/admin/items/"+page+-->
-<!--                           "?searchDateType=" + searchDateType +-->
-<!--                           "&searchSellStatus=" + searchSellStatus +-->
-<!--                           "&searchBy=" + searchBy +-->
-<!--                           "&searchText=" + searchText;-->
-<!--        }-->
-<!--    </script>-->
-<!--</th:block>-->
 
 <body>
 <div class="wrap" layout:fragment="content">
@@ -231,56 +230,8 @@
 
                 </tbody>
             </table>
-
-
-<!--            <div class="pageMover" th:with="start=${pageHandler.beginPage}, end=${pageHandler.endPage}">-->
-<!--                <ul class="pagination justify-content-center">-->
-<!--                    <li th:if="${not pageHandler.firstPage}"-->
-<!--                        th:classappend="${pageHandler.firstPage} ? 'disabled' : ''" class="page-item">-->
-<!--                        <a th:onclick="'javascript:page(' + ${pageHandler.page-1} + ')'" aria-label='Previous'-->
-<!--                           class="page-link">-->
-<!--                            <span aria-hidden='true'> 이전 </span>-->
-<!--                        </a>-->
-<!--                    </li>-->
-
-<!--                    <li th:each="page: ${#numbers.sequence(start, end)}"-->
-<!--                        th:classappend="${pageHandler.page eq page} ? 'active' : ''"-->
-<!--                        class="page-item">-->
-<!--                        <a th:onclick="'javascript:page(' + ${page} + ')'"-->
-<!--                           th:inline="text" class="page-link">[[${page}]]</a>-->
-<!--                    </li>-->
-
-<!--                    <li th:if="${not pageHandler.lastPage}"-->
-<!--                        th:classappend="${pageHandler.lastPage} ? 'disabled' : ''"-->
-<!--                        class="page-item">-->
-<!--                        <a th:onclick="'javascript:page(' + ${pageHandler.page + 1} + ')'"-->
-<!--                           aria-label='Next' class="page-link">-->
-<!--                            <span aria-hidden='true'> 다음 </span>-->
-<!--                        </a>-->
-<!--                    </li>-->
-
-<!--                </ul>-->
-<!--            </div>-->
-
-<!--            <div class="search" th:object="${itemSearchDto}">-->
-<!--                <select th:field="*{searchDateType}" class="form-control" >-->
-<!--                    <option value="all">전체기간</option>-->
-<!--                    <option value="1d">1일</option>-->
-<!--                    <option value="1w">1주</option>-->
-<!--                    <option value="1m">1개월</option>-->
-<!--                    <option value="6m">6개월</option>-->
-<!--                </select>-->
-<!--                <select th:field="*{searchBy}" class="form-control" >-->
-<!--                    <option value="itemName">제목내용</option>-->
-<!--                    <option value="itemDetail">상세내용</option>-->
-<!--                </select>-->
-
-<!--                <input th:field="*{searchText}" type="text" class="form-control" placeholder="검색어를 입력해주세요">-->
-
-<!--                <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>-->
-<!--            </div>-->
         </form>
-        <div>
+        <div class="writeButton">
             <a th:href="'/notice/write'" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">글 작성</a>
         </div>
     </div>

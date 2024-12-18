@@ -126,7 +126,7 @@
                             <ul>
                                 <li th:each="festival : ${festival}">
                                     <div class="fst1">
-                                            <p class="fstTitle" th:text="${festival.ftName}">title</p>
+                                        <a th:href="'/festival/detail/' + ${festival.ftId}"><p class="fstTitle" th:text="${festival.ftName}"></p></a>
                                         <div class="mainBn1T">
                                             <p class="mBn1Date" th:text="${festival.ftStDate}" >개최일</p>
                                             <p class="mBn1Date">~</p>

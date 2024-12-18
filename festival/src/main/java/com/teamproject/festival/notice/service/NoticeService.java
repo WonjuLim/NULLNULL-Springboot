@@ -66,6 +66,7 @@ public class NoticeService {
         return noticeDto.getRegId();
     }
 
+    // 공지사항 폼 만들기
     public NoticeDto makeNotice(NoticeForm noticeForm) {
         NoticeDto noticeDto =new NoticeDto();
         noticeDto.setNoId(noticeForm.getRegId());
@@ -76,6 +77,18 @@ public class NoticeService {
         return noticeDto;
     }
 
+    public NoticeDto makeUpdateNotice(NoticeForm noticeForm) {
+        NoticeDto noticeDto =new NoticeDto();
+        noticeDto.setNoId(noticeForm.getNoId());
+        noticeDto.setRegId(noticeForm.getRegId());
+        noticeDto.setNoTitle(noticeForm.getNoTitle());
+        noticeDto.setNoText(noticeForm.getNoText());
+        noticeDto.setNoFile(noticeForm.getNoFile());
+
+        return noticeDto;
+    }
+
+    // 공지사항 아이디 확인하기
     public boolean validateNoticeId(String noId, String id) {
         String loginUserId = userMapper.findUserId(id);
 
@@ -88,7 +101,18 @@ public class NoticeService {
         }
     }
 
+    // 공지사항 삭제
     public int noticeDelete(String noId) {
         return noticeMapper.noticeDelete(noId);
+    }
+
+    // 공지사항 수정
+    public String noticeUpdate(NoticeForm noticeForm) throws Exception{
+
+        NoticeDto noticeDto = makeUpdateNotice(noticeForm);
+
+        int result = noticeMapper.noticeUpdate(noticeDto);
+
+        return noticeDto.getNoId();
     }
 }

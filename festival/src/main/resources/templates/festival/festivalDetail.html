@@ -19,7 +19,7 @@
         font-size: 13px;
         line-height: 20px;
         color: rgb(20, 20, 20);
-        background-image:url('../img/background_img.png');
+        background-image: linear-gradient(to left,rgba(199, 187, 255, 0.5),  rgba(255, 193, 203, 0.8), rgba(255, 193, 203, 0.8)40%, rgb(205, 227, 255, 0.4) 70%, rgb(205, 227, 255, 0.8) 100%);
         background-size: cover;
         }
         ul, ol{list-style: none;}
@@ -407,8 +407,8 @@
                 <h1 th:text="${festival.ftName}">축제 제목</h1>
                 <p>개최중</p>
                 <div class="festivalDetail_main">
-                    <div class="festivalDetail_img" th:text="${festival.ftImg}">
-                        <img src="" alt=""> <!-- 이미지 삽입 -->
+                    <div class="festivalDetail_img">
+                        <img th:src="${festival.ftImg}" th:alt="${festival.ftName}"> <!-- 이미지 삽입 -->
                     </div>
 
                     <div class="festivalDetail_text">

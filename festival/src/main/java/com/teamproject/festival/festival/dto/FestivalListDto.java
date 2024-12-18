@@ -13,6 +13,7 @@ public class FestivalListDto {
 
     private Long ftId;
     private String ftName;
+    private String ftText;
     private LocalDate ftStdate;
     private LocalDate ftEddate;
     private String ftHost;

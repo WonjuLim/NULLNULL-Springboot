@@ -23,4 +23,5 @@ public class NoticeForm {
 
     private String noFile;
 
+    private String noId;
 }

@@ -14,4 +14,5 @@ public class FestivalMainDto {
     private Date ftStDate;
     private Date ftEdDate;
     private String ftText;
+    private Integer ftId;
 }

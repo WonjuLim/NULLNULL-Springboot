@@ -55,4 +55,14 @@
         DELETE FROM notice
         WHERE no_id = #{noId}
     </delete>
+
+    <!-- 수정 -->
+    <update id="noticeUpdate" parameterType="noticeDto">
+        UPDATE notice
+        SET no_title = #{noTitle},
+            no_uddate = NOW(),
+            no_text = #{noText},
+            no_file = #{noFile}
+        WHERE no_id = #{noId}
+    </update>
 </mapper>
