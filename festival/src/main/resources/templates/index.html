@@ -13,25 +13,9 @@
                 <div class="r_move"><img src="../img/a_right.png" alt="r_moveBtn"></div>
 
                 <div class="mainImg">
-                    <div class="mainImgList">
-                        <div class="ImgBn">
-                            <a href=""><img class="ImgBnIn" src="/img/slide1.jpg" alt="First slide"></a>
-                        </div>
-
-                        <div class="ImgBn">
-                            <a href=""><img class="ImgBnIn" src="/img/slide2.jpg" alt="Second  slide"></a>
-                        </div>
-
-                        <div class="ImgBn">
-                            <a href=""><img class="ImgBnIn" src="/img/slide3.jpg" alt="Third slide"></a>
-                        </div>
-
-                        <div class="ImgBn">
-                            <a href=""><img class="ImgBnIn" src="/img/slide4.jpg" alt="Third slide"></a>
-                        </div>
-
-                        <div class="ImgBn">
-                            <a href=""><img class="ImgBnIn" src="/img/slide5.jpg" alt="Third slide"></a>
+                    <div class="mainImgList" >
+                        <div class="ImgBn" th:each="festival : ${festival}"  th:object="${festivalMainDto}">
+                            <a th:href="'/festival/detail/' + ${festival.ftId}" ><img class="ImgBnIn" th:src="${festival.ftImg}" alt="First slide"></a>
                         </div>
                     </div>
                 </div> <!-- mainImg -->
@@ -42,7 +26,7 @@
                     const slide = document.querySelectorAll('.ImgBn img')
                     const slideLength = slide.length
                     let currentIndex = 0;
-                    let maxIndex = 4;
+                    let maxIndex = 5;
                     let minIndex = 0;
 
                     let loopInterval = setInterval(() => {
@@ -75,45 +59,40 @@
 
             <div class="main2">
 
+
                 <ul class="menuHiper">
                     <li>
-                        <a href="">
-                            <p class="menuImg"><img src="" alt=""></p>
-                            <p class="menuName">menu1</p>
+                        <a href="/notices">
+                            <p class="menuImg"><img src="../../img/notice.png" alt=""></p>
+                            <p class="menuName">공지사항</p>
                         </a>
                     </li>
                     <li>
-                        <a href="">
-                            <p class="menuImg"><img src="" alt=""></p>
-                            <p class="menuName">menu2</p>
+                        <a href="/festival/festivalList">
+                            <p class="menuImg"><img src="../../img/search.png" alt=""></p>
+                            <p class="menuName">축제찾기</p>
                         </a>
                     </li>
                     <li>
-                        <a href="">
-                            <p class="menuImg"><img src="" alt=""></p>
-                            <p class="menuName">menu3</p>
+                        <a href="/gather/gatherList">
+                            <p class="menuImg"><img src="../../img/gather.png" alt=""></p>
+                            <p class="menuName">같이가요</p>
                         </a>
                     </li>
                     <li>
-                        <a href="">
-                            <p class="menuImg"><img src="" alt=""></p>
-                            <p class="menuName">menu4</p>
+                        <a href="/users/new">
+                            <p class="menuImg"><img src="../../img/signin.png" alt=""></p>
+                            <p class="menuName">회원가입</p>
                         </a>
                     </li>
-                    <li>
-                        <a href="">
-                            <p class="menuImg"><img src="" alt=""></p>
-                            <p class="menuName">menu5</p>
-                        </a>
-                    </li>
-                </ul><!-- menuHiper --> 
+                </ul><!-- menuHiper -->
             </div> <!-- main2 -->
 
             <div class="mainBn">
                 <div class="mainBns">
                     <div class="mainBnT">
                         <h2>축제찾기</h2>
-                        <a th:href="'/festival/festivalList'"><span>더보기 ></span></a>
+                        <a th:href="'festival/festivalList'"><span>더보기 ></span></a>
                     </div>
                     <div class="mainBnT2">
                         <h2>공지사항</h2>
@@ -125,36 +104,38 @@
                         <form th:action="@{'/festival/'}" th:object="${festival}" role="form" method="get">
                             <ul>
                                 <li th:each="festival : ${festival}">
-                                    <div class="fst1">
-                                        <a th:href="'/festival/detail/' + ${festival.ftId}"><p class="fstTitle" th:text="${festival.ftName}"></p></a>
-                                        <div class="mainBn1T">
-                                            <p class="mBn1Date" th:text="${festival.ftStDate}" >개최일</p>
-                                            <p class="mBn1Date">~</p>
-                                            <p class="mBn1Date" th:text="${festival.ftEdDate}" ></p>
+                                    <a th:href="'/festival/detail/' + ${festival.ftId}" >
+                                        <div class="fst1">
+                                            <p class="fstTitle" th:text="${festival.ftName}">title</p>
+                                            <div class="mainBn1T">
+                                                <p class="mBn1Date" th:text="${festival.ftStDate}" >개최일</p>
+                                                <p class="mBn1Date">~</p>
+                                                <p class="mBn1Date" th:text="${festival.ftEdDate}" ></p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <p th:text="${festival.ftText}" class="mBn1Txt">Txt</p>
+                                        <p th:text="${festival.ftText}" class="mBn1Txt">Txt</p>
+                                    </a>
                                 </li>
                             </ul>
                         </form>
                     </div><!-- mainBn1 -->
-                
+
                     <div class="mainBn2">
                         <form th:action="@{'/notice/' + ${page}}" th:object="${notice}" role="form" method="get" class="mainBn2F">
                             <table class="mainBn2T">
                                 <thead class="mainBn2th">
-                                    <td>no</td>
-                                    <td>제목</td>
-                                    <td>등록일</td>
-                                    <td>조회수</td>
+                                <td>no</td>
+                                <td>제목</td>
+                                <td>조회수</td>
+                                <td>등록일</td>
                                 </thead>
                                 <tbody>
-                                    <tr th:each="notice : ${notice}">
-                                        <td th:text="${notice.noId}" style="font-size: 12px"></td>
-                                        <td> <a th:href="'/notice/' + ${notice.noId}" th:text="${notice.noTitle}" style="font-size: 12px"></a></td>
-                                        <td th:text="${notice.noRgDate}" style="font-size: 12px"></td>
-                                        <td th:text="${notice.noCount}" style="font-size: 12px"></td>
-                                    </tr>
+                                <tr th:each="notice : ${notice}">
+                                    <td th:text="${notice.noId}" style="font-size: 12px">공지사항 아이디</td>
+                                    <td th:text="${notice.noTitle}" style="font-size: 12px">제목</td>
+                                    <td th:text="${notice.noRgDate}" style="font-size: 12px"></td>
+                                    <td th:text="${notice.noCount}" style="font-size: 12px"></td>
+                                </tr>
                                 </tbody>
                             </table>
                         </form>

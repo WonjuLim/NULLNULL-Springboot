@@ -84,6 +84,7 @@ public class FestivalService {
         return festivalMapper.countFestival(map);
     }
 
+    // 페스티벌 검색
     public List<FestivalListDto> festivalListPage(Map map){
         return festivalMapper.festivalListPage(map);
 

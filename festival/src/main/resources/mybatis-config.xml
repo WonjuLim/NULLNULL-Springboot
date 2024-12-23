@@ -15,6 +15,7 @@
         <typeAlias alias="festivalListDto" type="com.teamproject.festival.festival.dto.FestivalListDto" />
         <typeAlias alias="festivalDetailDto" type="com.teamproject.festival.festival.dto.FestivalDetailDto" />
         <typeAlias alias="festivalReviewDto" type="com.teamproject.festival.festival.dto.FestivalReviewDto" />
+        <typeAlias alias="festivalSearchDto" type="com.teamproject.festival.festival.dto.FestivalSearchDto" />
 
         <typeAlias alias="noticeDto" type="com.teamproject.festival.notice.dto.NoticeDto" />
         <typeAlias alias="noticeMainDto" type="com.teamproject.festival.notice.dto.NoticeMainDto"></typeAlias>

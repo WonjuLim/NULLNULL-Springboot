@@ -4,16 +4,12 @@ import com.teamproject.festival.config.PageHandler;
 import com.teamproject.festival.notice.dto.NoticeDto;
 import com.teamproject.festival.notice.form.NoticeForm;
 import com.teamproject.festival.notice.service.NoticeService;
-import com.teamproject.festival.user.mapper.UserMapper;
 import com.teamproject.festival.user.service.UserService;
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -177,6 +173,7 @@ public class NoticeController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    // 공지사항 수정 페이지로 이동
     @GetMapping("/notice/update/{noId}")
     public String updateForm(@PathVariable("noId") String noId, Model model) {
         NoticeDto notice = noticeService.noticeDetail(noId);
@@ -184,6 +181,7 @@ public class NoticeController {
         return "notice/noticeUpdate";
     }
 
+    // 공지사항 수정
     @PostMapping("/notice/update/{noId}")
     public String updateNotice(@PathVariable("noId") String noId,
                                @ModelAttribute("noticeForm") @Valid NoticeForm noticeForm,

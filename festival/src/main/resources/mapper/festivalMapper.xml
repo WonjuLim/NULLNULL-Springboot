@@ -6,7 +6,7 @@
 
     <!-- 메인페이지 축제 리스트 출력 -->
     <select id="festivalMainList" parameterType="map" resultType="festivalMainDto">
-        SELECT ft_name, ft_stdate, ft_eddate, ft_text, ft_id
+        SELECT ft_name, ft_stdate, ft_eddate, ft_text, ft_id, ft_img
         FROM festival
         WHERE ft_USEYN = 'Y'
         ORDER BY ft_eddate desc
@@ -15,7 +15,7 @@
 
     <!-- 공지사항 전체 출력 -->
     <select id="festivalListAll" parameterType="map" resultType="festivalListDto">
-        SELECT ft_id, ft_name, ft_text, ft_stdate, ft_eddate, ft_host, ft_phone
+        SELECT ft_id, ft_name, ft_text, ft_stdate, ft_eddate, ft_host, ft_phone, ft_img
         FROM festival
         WHERE ft_useyn = 'Y'
         ORDER BY ft_stdate DESC
@@ -48,7 +48,6 @@
     </insert>
 
 
-
     <!--연도월일별, 지역, 키워드 검색-->
     <sql id="festivalSearchConditions">
         <if test="festivalSearchDto.searchftStdate != null and festivalSearchDto.searchftStdate != ''">
@@ -74,19 +73,12 @@
 
     <!-- 전체 목록(페이징 처리)-->
     <select id="festivalListPage" parameterType="map" resultType="festivalListDto">
-        SELECT ft_id, ft_name, ft_text, ft_address, ft_stdate, ft_eddate, ft_host, ft_phone
+        SELECT ft_id, ft_name, ft_text, ft_address, ft_stdate, ft_eddate, ft_host, ft_phone, ft_img
         FROM festival
         WHERE ft_useyn = 'Y'
             <include refid="festivalSearchConditions" />
         ORDER BY ft_stdate
         LIMIT #{pageSize} OFFSET #{page}
-    </select>
-
-    <!-- 이미지 불러오기 -->
-    <select id="festivalImgSelect">
-        SELECT festival_img_id, img_name, ori_img_name, img_url, rep_img_yn, ft_id, reg_time, update_time
-        FROM festival_img
-        WHERE ft_id = #{ftId}
     </select>
 
 </mapper>

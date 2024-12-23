@@ -28,5 +28,4 @@ public interface FestivalMapper {
     //페스티벌 개수 세기
     int countFestival(Map map);
 
-    List<FestivalImgDto> festivalImgSelect(long ftId);
 }

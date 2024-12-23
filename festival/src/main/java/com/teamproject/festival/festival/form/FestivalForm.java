@@ -2,6 +2,7 @@ package com.teamproject.festival.festival.form;
 
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -9,8 +10,8 @@ public class FestivalForm {
 
     private Integer ftId;
     private String ftName;
-    private LocalDateTime ftStdate;
-    private LocalDateTime ftEddate;
+    private LocalDate ftStdate;
+    private LocalDate ftEddate;
     private String ftText;
     private String ftHost;
     private String ftPhone;

@@ -18,4 +18,5 @@ public class FestivalListDto {
     private LocalDate ftEddate;
     private String ftHost;
     private String ftPhone;
+    private String ftImg;
 }

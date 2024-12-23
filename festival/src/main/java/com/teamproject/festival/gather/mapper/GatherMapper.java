@@ -2,6 +2,7 @@ package com.teamproject.festival.gather.mapper;
 
 import com.teamproject.festival.gather.dto.GatherImgDto;
 import com.teamproject.festival.gather.dto.GatherDto;
+import com.teamproject.festival.gather.dto.GatherSearchDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -12,23 +13,32 @@ public interface GatherMapper {
 
     int gatherInsert(GatherDto gatherDto);
 
-    int gatherImgInsert(GatherImgDto gatherImgDto);
-
     List<GatherDto> gatherListAll();
 
+    void gatherGtCount(String gatherId);
+
+    // 눌렀을 때 해당 동행목록을 보임
     GatherDto gatherSelect(String gatherId);
 
-    List<GatherImgDto> gatherImgSelect(String gatherId);
 
-    GatherImgDto gatherImgIdSelect(Long gatherImgId);
+
+    List<GatherSearchDto> gatherListPage(Map map);
+
+    int countGather(Map map);
 
     int gatherUpdate(GatherDto gatherDto);
 
+    int gatherDelete(String gatherId);
+
+
+
+    // 이미지 부분
+
+    int gatherImgInsert(GatherImgDto gatherImgDto);
+
+    GatherImgDto gatherImgIdSelect(Long gatherImgId);
+
     int gatherImgUpdate(GatherImgDto gatherImgDto);
 
-    List<GatherDto> gatherListPage(Map map);
 
-    List<GatherDto> mainSelect(Map map);
-
-    int countGatherList(Map map);
 }

@@ -4,7 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -19,17 +22,21 @@ public class GatherSearchDto {
     private String ftId;
 
     // 예정일
-    private Date gtMtdate;
+    private String gtMtdate;
 
     // 선호 성별
-    private String preferGender;
+    private List<String> preferGender;
 
     // 선호 연령대
-    private String preferAge;
+    private List<String> preferAge;
 
     // 축제명 도는 축제에 대한 상세 설명
     private String searchBy;
 
     // 검색어
     private String SearchText;
+
+    private String userId;
+
+    private Integer gtCount;
 }

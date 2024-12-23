@@ -190,7 +190,7 @@
 
         .mainImg{
             position: absolute;
-            top: 0;
+            top: -200px;
             left: 0;
             overflow: hidden;
         }
@@ -201,7 +201,7 @@
         }
 
         .ImgBn img{
-            width: 1200px;
+            width: 1000px;
         }
 
         /* 배너 end */
@@ -365,20 +365,8 @@
                     <div class="r_move"><img src="../../img/a_right.png" alt="r_moveBtn"></div>
                     <div class="mainImg">
                         <div class="mainImgList">
-                            <div class="ImgBn">
-                                <a href=""><img class="ImgBnIn" src="../../img/slide1.jpg" alt="First slide"></a>
-                            </div>
-                            <div class="ImgBn">
-                                <a href=""><img class="ImgBnIn" src="../../img/slide2.jpg" alt="Second  slide"></a>
-                            </div>
-                            <div class="ImgBn">
-                                <a href=""><img class="ImgBnIn" src="../../img/slide3.jpg" alt="Third slide"></a>
-                            </div>
-                            <div class="ImgBn">
-                                <a href=""><img class="ImgBnIn" src="../../img/slide4.jpg" alt="Third slide"></a>
-                            </div>
-                            <div class="ImgBn">
-                                <a href=""><img class="ImgBnIn" src="../../img/slide5.jpg" alt="Third slide"></a>
+                            <div class="ImgBn" th:each="festival : ${festival}"  th:object="${festivalMainDto}">
+                                <a th:href="'/festival/detail/' + ${festival.ftId}" ><img class="ImgBnIn" th:src="${festival.ftImg}" alt="First slide"></a>
                             </div>
                         </div>
                     </div>
@@ -389,21 +377,31 @@
                         const slide = document.querySelectorAll('.ImgBn img')
                         const slideLength = slide.length
                         let currentIndex = 0;
+                        let maxIndex = 4;
+                        let minIndex = 0;
+
+                        let loopInterval = setInterval(() => {
+                            nextMove();
+                        }, 3000);
 
                         const moveSlide = function(num){
-                            slideBox.style.transform = `translateX(${-num * 1200}px)`;
+                            slideBox.style.transform = `translateX(${-num * 1000}px)`;
                             currentIndex = num;
                         }
 
                         prev.addEventListener('click', ()=>{
-                            if(currentIndex !== 0){
+                            if(currentIndex !== minIndex){
                                 moveSlide(currentIndex -1)
+                            } else if (currentIndex == minIndex) {
+                                moveSlide(currentIndex = maxIndex)
                             }
                         })
 
                         next.addEventListener('click', ()=>{
-                            if(currentIndex !== slideLength -1){
+                            if(currentIndex != slideLength -1){
                                 moveSlide(currentIndex +1)
+                            } else if(currentIndex == maxIndex) {
+                                moveSlide(currentIndex = 0)
                             }
                         })
                     </script>
@@ -418,7 +416,7 @@
                             <li th:each="festival : ${festival}" >
                                 <a th:href="'/festival/detail/' + ${festival.ftId}">
                                     <div class="infoMain2">
-                                        <div class="inimg"><img src="../../img/slide1.jpg"></div>
+                                        <div class="inimg"><img th:src="${festival.ftImg}" ></div>
                                         <div class="inimg1"></div>
 
                                         <div class="infoT" th:text="${festival.ftName}">Title</div>

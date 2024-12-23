@@ -59,8 +59,6 @@ public class FestivalController {
         return "festival/festivalList";
     }
 
-
-
     @GetMapping("festival/detail/{ftId}")
     public String festivalDtl(Model model, @PathVariable("ftId") Long ftId){
 
@@ -71,43 +69,4 @@ public class FestivalController {
 
         return "festival/festivalDetail";
     }
-
-//    @GetMapping("festival/detail/{ftId}")
-//    public String festivalDtl(Model model, @PathVariable("ftId") Long ftId) { //변수에 item Id 대입하기위해
-//
-//        try {
-//
-//            //조회한 상품 데이터를 가져옴
-//            FestivalForm festivalForm = festivalService.getFestivalDtl(ftId);
-//            model.addAttribute("festivalForm", festivalForm);
-//
-//        } catch (NullPointerException e) {
-//            //상품이 존재하지 않으면 '존재하지 않는 상품입니다.'를 메세지로 표시
-//            model.addAttribute("errorMessage", "존재하지 않는 상풉입니다.");
-//            model.addAttribute("festivalForm", new FestivalForm()); //새로운객체로 나오게되면 비어있는채로 나온다.
-//
-//        }
-//
-//        //가져온 내용을 전달
-//        return "festival/festivalForm";
-//    }
-//
-//    @GetMapping("/detail/{ftId}")
-//    public String festivalDtl(@PathVariable("ftId") Long ftId, Model model){
-//
-//        FestivalForm festivalForm = festivalService.getFestivalDtl(ftId);
-//        model.addAttribute("festival", festivalForm);
-//
-//        return "festival/festivalDtl";
-//
-//    }
-//
-
-
-
-
-
-
-
-
 }
