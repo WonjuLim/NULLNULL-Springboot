@@ -41,7 +41,9 @@ public class GatherController {
 
         Map map = new HashMap();
 
-        if (page == null) page = 1;
+        if (page == null || page < 1) {
+            page = 1;
+        }
 
         map.put("page", page * ps - ps);
         map.put("pageSize", ps);
@@ -54,6 +56,8 @@ public class GatherController {
 
         model.addAttribute("gather", gather);
         model.addAttribute("pageHandler", pageHandler);
+
+        System.out.println("Page parameter: " + page);
 
         return "/gather/gatherList";
     }

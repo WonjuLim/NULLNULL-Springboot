@@ -9,7 +9,7 @@
         SELECT ft_name, ft_stdate, ft_eddate, ft_text, ft_id, ft_img
         FROM festival
         WHERE ft_USEYN = 'Y'
-        ORDER BY ft_eddate desc
+        ORDER BY ft_eddate
         LIMIT 6
     </select>
 
@@ -32,6 +32,7 @@
         SELECT ft_id, ft_name, ft_text, ft_stdate, ft_eddate, ft_host, ft_phone
         FROM festival
         WHERE ft_USEYN = 'Y'
+        ORDER BY ft_eddate
     </select>
 
     <!-- 페스티벌 디테일 -->
@@ -77,7 +78,7 @@
         FROM festival
         WHERE ft_useyn = 'Y'
             <include refid="festivalSearchConditions" />
-        ORDER BY ft_stdate
+        ORDER BY ft_eddate
         LIMIT #{pageSize} OFFSET #{page}
     </select>
 

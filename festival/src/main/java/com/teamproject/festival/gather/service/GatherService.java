@@ -1,5 +1,6 @@
     package com.teamproject.festival.gather.service;
 
+    import com.teamproject.festival.festival.dto.FestivalListDto;
     import com.teamproject.festival.gather.dto.GatherDto;
     import com.teamproject.festival.gather.dto.GatherImgDto;
     import com.teamproject.festival.gather.dto.GatherSearchDto;
@@ -122,6 +123,12 @@
 
             return gatherForm;
         }
+
+        // 동행 페이지 개수세기
+        public int gatherSearchCount(Map map) {
+            return gatherMapper.gatherSearchCount(map);
+        }
+
 
     }
 

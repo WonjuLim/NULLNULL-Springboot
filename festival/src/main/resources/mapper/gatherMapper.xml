@@ -102,8 +102,6 @@
     </sql>
 
 
-
-
     <!--  검색량 계산  -->
     <select id="gatherSearchCount" resultType="Integer">
         select count(*)
